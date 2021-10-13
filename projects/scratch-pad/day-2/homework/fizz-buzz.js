@@ -12,17 +12,21 @@
 */
 function fizzBuzz() {
     // YOUR CODE GOES BELOW HERE //
-    var message = "";
+    //var arr = [];
+    //console.log("start searching......................");
 for (var i = 1; i <= 100; i++) {
-    if (i % 3 === 0) {
-        console.log(message += "Fizz");
-    } else if(i % 5 === 0) {
-        console.log(message += "Buzz");
+
+    if (i % 3 === 0 && i % 5 !== 0) {
+        ////
+        console.log("Fizz");
+    } else if(i % 5 === 0 && i % 3 !== 0) {
+        console.log("Buzz");
     } else if (i % 3 === 0 && i % 5 === 0) {
-        console.log(message += "FizzBuzz");
+        console.log("FizzBuzz");
+    } else {
+        console.log(i);
     }
 }
-return message;
 
     // YOUR CODE GOES ABOVE HERE //
 }
