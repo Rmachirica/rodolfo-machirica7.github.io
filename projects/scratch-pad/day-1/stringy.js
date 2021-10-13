@@ -80,7 +80,15 @@ return string.replace(/\s+/g, "-").toLowerCase();
  */
 function beginsWith(string, char) {
     // YOUR CODE BELOW HERE //
+    // force string and char to lowercase for sensitive comparison
+      var myString = string.toLowerCase();
+      var myChar = char.toLowerCase();
+       // use if statement to check if string[0] === char and return true
+      if (myString[0] === myChar) {
+          return true
+      }
 
+    return false;
     
 
     // YOUR CODE ABOVE HERE //
@@ -100,9 +108,14 @@ function beginsWith(string, char) {
  */
 function endsWith(string, char) {
     // YOUR CODE BELOW HERE //
-
-
-
+// force string and char to lowercase for sensitive comparison
+    var myString = string.toLowerCase();
+    var myChar = char.toLowerCase();
+    // use if statement to check if string[0] === char and return true
+    if (myString[myString.length-1] === myChar) {
+        return true
+    }
+return false;
     // YOUR CODE ABOVE HERE //
 }
 
@@ -113,7 +126,8 @@ function endsWith(string, char) {
  */
 function concat(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
+ // use += assigment operator to concatenate stringOne with stringTwo
+ return stringOne += stringTwo;
 
 
     // YOUR CODE ABOVE HERE //
@@ -132,7 +146,8 @@ function concat(stringOne, stringTwo) {
 function join(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
     var args = Array.from(arguments);
-
+// chain join() method on args to string together arguments
+return args.join("");
 
     // YOUR CODE ABOVE HERE //
 }
@@ -148,8 +163,8 @@ function join(stringOne, stringTwo) {
  */
 function longest(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
-
+// compare, strictly, the length of the strings by chaining the .length property on each string
+return stringOne.length > stringTwo.length ? stringOne : stringTwo;
 
     // YOUR CODE ABOVE HERE //
 }
@@ -163,7 +178,7 @@ function longest(stringOne, stringTwo) {
  */
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-
+return stringOne > stringTwo ? -1 : stringOne < stringTwo ? 1 : 0;
 
 
     // YOUR CODE ABOVE HERE //
@@ -180,7 +195,7 @@ function sortAscending(stringOne, stringTwo) {
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
 
-
+return stringOne < stringTwo ? -1 : stringOne > stringTwo ? 1 : 0;
 
 
     // YOUR CODE ABOVE HERE //
