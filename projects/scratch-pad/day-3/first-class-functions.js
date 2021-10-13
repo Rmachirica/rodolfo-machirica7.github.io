@@ -13,8 +13,16 @@
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
-    
-    
+
+   return function greaterThan(num) {
+           if (typeof base === "number") {
+               return num > base;
+           } else if (typeof base === "string") {
+               return function stringGreaterThan (str) {
+                   return str > base;
+               };
+           }
+   } 
     
     
     // YOUR CODE ABOVE HERE //
@@ -28,6 +36,16 @@ function createGreaterThanFilter(base) {
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
     
+   return function greaterThan(num) {
+    if (typeof base === "number") {
+        return num < base;
+    } else if (typeof base == "string") {
+        return function stringGreaterThan (string) {
+            return string < base;
+        }
+    }
+}
+
     
     
     
@@ -42,8 +60,14 @@ function createLessThanFilter(base) {
 function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     
-    
-    
+    return function startChar(str) {
+        if (str.startsWith(startsWith)) {
+            return true
+        } else {
+            return false;
+        }
+       
+    }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -55,10 +79,13 @@ function createStartsWithFilter(startsWith) {
  */
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
-    
+    return function endsWit(str) {
+        if (str.endsWith(endsWith)) {
+            return true;
+        };
+        return false;
+    };
+
     // YOUR CODE ABOVE HERE //
 }
 
@@ -71,10 +98,12 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
+    var myArray = [];
+    for (var i = 0; i <= strings.length -1; i++) {
+        myArray.push(modify(strings[i]));
+    }
     
-    
-    
-    
+    return myArray;
     // YOUR CODE ABOVE HERE //
 }
 
@@ -89,9 +118,12 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    
-    
-    
+    for (var i = 0; i <= strings.length; i++) {
+        if (test(strings[i])) {
+    return false
+        }
+      return true;
+    }
     
     // YOUR CODE ABOVE HERE //
 }
