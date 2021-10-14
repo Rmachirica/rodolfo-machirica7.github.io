@@ -24,9 +24,23 @@
 function range(start, end) {
     // YOUR CODE GOES BELOW HERE //
     
-    
-    
-    
+    //  var min = Math.min(start, end);
+    //  var max = Math.max(start, end);
+    //  console.log(min, max);
+
+    var rangeArray = [];
+           if (start < end) {
+    for (var i = start; i <= end; i++) {
+        console.log(rangeArray.push(i));
+
+    }
+} else if (start > end) {
+    for (var i = start; i >= end; i--) {
+    rangeArray.push(i);
+   console.log(rangeArray);
+    }
+}
+ return rangeArray;
     // YOUR CODE GOES ABOVE HERE //
 }
 
