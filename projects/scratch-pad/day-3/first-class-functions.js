@@ -15,14 +15,9 @@ function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
 //input (base)
 // output : return a function that tests wether a given value is greater than the base
-   return function greaterThan(num) {
-           if (typeof base == "number") {
-               return num > base;
-           } else if (typeof base === "string") {
-               return num > base;
-           };
-   } 
-    
+return function (value) {
+return value > base ? true : false;
+}
     
     // YOUR CODE ABOVE HERE //
 }
@@ -34,16 +29,13 @@ function createGreaterThanFilter(base) {
  */
 function createLessThanFilter(base) {
     // YOUR CODE BELOW HERE //
-   return function greaterThan(num) {
-    if (typeof base === "number") {
-        return num < base;
-    } else if (typeof base === "string") {
-        return num < base;
-    }
-}
-
-    
-    
+  return function (value) { // test if value (a string or a number) is less than base
+  if (typeof value === "string") {
+      return value < base ? true : false;
+  } else if (typeof value === "number") {
+      return value < base ? true : false;
+  }
+  }
     
     // YOUR CODE ABOVE HERE //
 }
@@ -57,10 +49,10 @@ function createStartsWithFilter(startsWith) {
     // YOUR CODE BELOW HERE //
     
     return function startChar(str) {
-       if (str[0].toLowerCase() === startsWith.toLowerCase()) {
-           return true;
+        {return str[0].toUpperCase() === startsWith.toUpperCase() ? true : false; // tests to see wether a given character is at the first index of a given string.
+ 
        }
-       return false;
+       
     }
     
     // YOUR CODE ABOVE HERE //
@@ -73,12 +65,9 @@ function createStartsWithFilter(startsWith) {
  */
 function createEndsWithFilter(endsWith) {
     // YOUR CODE BELOW HERE //
-    return function endsWit(str) {
-        if (str[str.length-1].toLowerCase() === endsWith.toLowerCase()) {
-            return true;
-        };
-        return false;
-    };
+   return function (str) {// checks if last character of string strickly equals the parameter endsWith
+       return str[str.length -1].toLowerCase() === endsWith.toLowerCase() ? true : false;
+   }
 
     // YOUR CODE ABOVE HERE //
 }
@@ -91,18 +80,16 @@ function createEndsWithFilter(endsWith) {
  * the modify Function, but we need to collect the results into some collection.
  */
 function modifyStrings(strings, modify) {
-    // YOUR CODE BELOW HERE //
-    var myArray = []; // create an array to populate with modified values of the string array
-    for (var i = 0; i <= strings.length -1; i++) { // access values of strings through iteration
-        if (modify(strings[i])) {
-            myArray.push(modify(strings[i]));
-        // console.log(myArray);
-        } else {
-        return false;
-        }
-    
+    // YOUR CODE BELOW HERE // 
+    // declare an empty array to populate it with the modified values of strings
+    var modifiedStrings = [];
+    //Write a loop to iterate over strings array
+    for (var element of strings) {
+        // pass elements of strings into the modify function to mutate them and then push into modifiedStrings
+        modifiedStrings.push(modify(element));
     }
-    return myArray;
+    return modifiedStrings; 
+   
     // YOUR CODE ABOVE HERE //
 }
 
@@ -117,17 +104,15 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
-    //var myArr = true;
+
     //inputs : array of strings (strings) and a function (test) 
     // test the string and return a boolean on whether it passed the test
-
-  for (var i = 0; i <= strings.length - 1; i++) {
-     // var allStrings = true;
-        if (!test(strings[i])) {
-        return false;
-        } 
+    for (var element of strings) {
+        if (test(element) === false) {
+            return false;
+        }
     }
-return true;
+    return true;
     // YOUR CODE ABOVE HERE //
 }
 
