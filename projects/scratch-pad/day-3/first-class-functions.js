@@ -121,12 +121,13 @@ function allStringsPass(strings, test) {
     //inputs : array of strings (strings) and a function (test) 
     // test the string and return a boolean on whether it passed the test
 
-  for (var i = 0; i <= strings.length; i++) {
-        if (test(strings[i]) === false) {
-            return false;
+  for (var i = 0; i <= strings.length - 1; i++) {
+     // var allStrings = true;
+        if (!test(strings[i])) {
+        return false;
         } 
     }
-    return true;
+return true;
     // YOUR CODE ABOVE HERE //
 }
 
