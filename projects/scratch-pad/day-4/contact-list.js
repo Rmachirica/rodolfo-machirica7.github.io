@@ -58,13 +58,25 @@ function makeContactList() {
         contacts.push(contact);
         console.log(contacts.length);
         },
-        findContact: function (contact, nameFirst, nameLast) {
-            if (contact.hasOwnProperty(nameFirst) === nameFirst && contact.hasOwnProperty(nameLast) === nameLast) {
-                return contact;
+        findContact: function (fullName) {
+            // write a for loop to iterate trough contacts and find fullname
+            var splitString = fullName.split(" ");
+
+            for (var i = 0; i <= contacts.length-1; i++) {
+                //for every contact in contacts, if nameFirst === splitString[0] and nameLast === splitString.length-1, return contact
+                if (contacts[i].nameFirst === splitString[0] && contacts[i].nameLast === splitString[splitString.length-1]) {
+                    return contacts[i];
+                }
             }
         },
         removeContact: function (contact) {
-        contacts.slice(contact);
+            for (var i = 0; i <= contacts.length -1; i++) {
+                if (contacts[i].id === contact.id) {
+                  return  contacts.splice(i, 1);
+
+                }
+            }
+        contacts.splice(contact);
         console.log(contacts)
         },
         printAllcontactNames: function(contact) {
