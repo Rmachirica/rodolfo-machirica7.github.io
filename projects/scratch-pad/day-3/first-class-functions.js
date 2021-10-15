@@ -117,18 +117,16 @@ function modifyStrings(strings, modify) {
  */
 function allStringsPass(strings, test) {
     // YOUR CODE BELOW HERE //
+    //var myArr = true;
     //inputs : array of strings (strings) and a function (test) 
-    // test the string and return a boolean on whether it passed
-    for (var i = 0; i <= strings.length; i++) {
+    // test the string and return a boolean on whether it passed the test
 
-        if (test(strings[i])) {
-            console.log(test(strings[i]));
-    return true;
-        } else {
+  for (var i = 0; i <= strings.length; i++) {
+        if (test(strings[i]) === false) {
             return false;
-        }
+        } 
     }
-    
+    return true;
     // YOUR CODE ABOVE HERE //
 }
 

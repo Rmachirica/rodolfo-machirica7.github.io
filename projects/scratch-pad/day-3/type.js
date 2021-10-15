@@ -80,10 +80,47 @@ function isCollection(value) {
  */ 
 function typeOf(value) {
     // YOUR CODE BELOW HERE //
-    
+// if (typeof value !== "object") {
+//     return typeof value;
+// } else if (typeof value === "object" && value !== null && value instanceof Date === false && Array.isArray(value) === false) {
+//     return "object";
+// } else if (value === "null") {
+//     return "null";
+// } else if (Array.isArray(value) === true) {
+//     return "array";
+// } else if (value instanceof Date === true) {
+//     return "date";
+// };
+
+
+
+
+
+
+
+
+
+
+
+   if (typeof (value) === "object" && value !== null && value instanceof Date === false && Array.isArray(value) === false) {
+        return "object";
+    } else if (typeof (value) === "null") {
+        return "null";
+    } else if (typeof (value) === "function") {
+        return "function";
+    } else if ((value) instanceof Date) {
+        return "date";
+    } else if (Array.isArray(value) === true) {
+        return "array";
+    } else if (typeof (value) === "number" || typeof value === "NaN") {
+        return "number";
+    } else if (typeof (value) === "string") {
+        return "string";
+    } else {
+        return typeof value;
+    }
     // YOUR CODE ABOVE HERE //
 }
-
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 if((typeof process !== 'undefined') &&
     (typeof process.versions.node !== 'undefined')) {
