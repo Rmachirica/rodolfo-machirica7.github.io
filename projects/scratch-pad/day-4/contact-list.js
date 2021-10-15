@@ -79,11 +79,13 @@ function makeContactList() {
         contacts.splice(contact);
         console.log(contacts)
         },
-        printAllcontactNames: function(contact) {
-            var fullnames = contact.map(function(user) {
-                return user.nameFirst + " "+ user.nameLast;
-            });
-            return fullnames.join("\n");
+        printAllContactNames: function () {
+            var fullNames = [];
+            for (var i = 0; i < contacts.length; i++) {
+           
+               fullNames.push(contacts[i].nameFirst + " " + contacts[i].nameLast);
+            }
+            return fullNames.join("\n");
         }
     }
 }
