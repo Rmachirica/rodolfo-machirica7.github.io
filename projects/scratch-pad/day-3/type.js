@@ -14,12 +14,9 @@
  */
 function isArray(value) {
     // YOUR CODE BELOW HERE //
-    if (Array.isArray(value)) {
-        return true;
-    } else {
-        return false;
-    }
-    
+    // use Array.isArray to strickly determine if typeof value is indeed and "array".
+    // Use ternary operator to write the condifition logical in the return statement
+    return Array.isArray(value) ? true : false;
     // YOUR CODE ABOVE HERE //
 }
 
@@ -33,10 +30,11 @@ function isArray(value) {
  */
 function isObject(value) {
     // YOUR CODE BELOW HERE //
-    if (typeof value === "object" && value !== null && Array.isArray(value) === false && value instanceof Date === false) {
-        return true;
-    } else {
+    if (typeof value !== "object") {// checks for values different from object's and returns false
         return false;
+    } else {
+        // checks for object intended as a collection by invalidating other forms of objects that aren't intended as a collection.
+        return typeof value === "object" && value !== null && value instanceof Date === false && !Array.isArray(value);
     }
     // YOUR CODE ABOVE HERE //
 }
@@ -49,7 +47,8 @@ function isObject(value) {
  */
 function isCollection(value) {
     // YOUR CODE BELOW HERE //
-    if (typeof value === Array.isArray(value) || typeof value === "object" && value !== null && value instanceof Date === false) {
+    // checks and passes only objects intended as collection or Array.isArray and rejects other types of objects.
+    if (Array.isArray(value) || typeof value === "object" && value !== null && value instanceof Date === false) {
         return true;
     } else {
         return false;
@@ -83,11 +82,11 @@ function typeOf(value) {
     console.log(value);
 if (typeof value !== "object") {
     return typeof value;
-    } else if (typeof value === "object" && value !== null && value instanceof Date === false && Array.isArray(value) === false) {
+    } else if (typeof value === "object" && value !== null && value instanceof Date === false && !Array.isArray(value)) {
       return "object";
    } else if (value === null) {
          return "null";
-   } else if (Array.isArray(value) === true) {
+   } else if (Array.isArray(value)) {
       return "array";
   } else if (value instanceof Date === true) {
      return "date";
