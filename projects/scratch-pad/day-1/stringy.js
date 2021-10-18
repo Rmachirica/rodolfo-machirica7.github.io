@@ -60,7 +60,7 @@ return string.toUpperCase();
 function toDashCase(string) {
     // YOUR CODE BELOW HERE //
     // use the replace() method to replace all empty spaces (\s) with dash (-) and force string to lowercase. 
-return string.replace(/\s+/g, "-").toLowerCase();
+return string.replace(/\s/g, "-").toLowerCase();
 
 
     // YOUR CODE ABOVE HERE //
@@ -194,7 +194,7 @@ return stringOne > stringTwo ? 1 : stringOne < stringTwo ? -1 : 0;
  */
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
-console.log("yolo-oooooo");
+//console.log("yolo-oooooo");
 return stringOne < stringTwo ? 1 : stringOne > stringTwo ? -1 : 0;
 
 

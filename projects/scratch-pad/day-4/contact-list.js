@@ -35,11 +35,14 @@
 
 // YOUR CODE GOES BELOW HERE //
 function makeContact(id, nameFirst, nameLast) {
-    var contact = {};
-    contact.id = id;
-    contact.nameFirst = nameFirst;
-    contact.nameLast = nameLast;
-    return contact;
+ /*use makeContact parameters to to set the keys for the object to be created
+ 1. output : an object contact
+  */
+ var contact = {};
+ contact.id = id;
+ contact.nameFirst = nameFirst;
+ contact.nameLast = nameLast;
+ return contact;
 } 
 
 
@@ -53,43 +56,40 @@ function makeContactList() {
         length: function() {
             return contacts.length;
         },
-        addContact: function (contact) {
-            console.log(contact);
-        contacts.push(contact);
-        console.log(contacts.length);
+        addContact: function(contact) {
+            contacts.push(contact);
         },
-        findContact: function (fullName) {
-            // write a for loop to iterate trough contacts and find fullname
-            var splitString = fullName.split(" ");
-
-            for (var i = 0; i <= contacts.length-1; i++) {
-                //for every contact in contacts, if nameFirst === splitString[0] and nameLast === splitString.length-1, return contact
-                if (contacts[i].nameFirst === splitString[0] && contacts[i].nameLast === splitString[splitString.length-1]) {
+        findContact: function(fullName) {// takes a fullName string and returns the object if found in the contacts or undefined if not
+            var splitFullName = fullName.split(" ");// splits fullName into nameFirst and nameLast to then compare with the first and last name in the contact.list
+            for (var i = 0; i <= contacts.length - 1; i++) {
+                if (contacts[i].nameFirst === splitFullName[0] && contacts[i].nameLast === splitFullName[splitFullName.length-1]) {
                     return contacts[i];
+                } else {
+                    return undefined;
                 }
             }
-        },
-        removeContact: function (contact) {
-            for (var i = 0; i <= contacts.length -1; i++) {
-                if (contacts[i].id === contact.id) {
-                  return  contacts.splice(i, 1);
 
+        },
+        removeContact: function(contact) {// takes a contact to be removed from the contact list
+            for (var i = 0; i <= contacts.length - 1; i++) {
+                if (contacts[i] === contact) {
+                    contacts.splice(i, 1);
                 }
             }
-        contacts.splice(contact);
-        console.log(contacts)
-        },
-        printAllContactNames: function () {
-            var fullNames = [];
-            for (var i = 0; i < contacts.length; i++) {
 
-               fullNames.push(contacts[i].nameFirst + " " + contacts[i].nameLast);
-               console.log(fullNames);
-            }
-            return fullNames.join("\n");
+        },
+        printAllContactNames: function() {// return a string of all full names separated by a new line
+          // write a while loop
+          var allFullNames = [];
+              
+          for (var myFullName = 0; myFullName <= contacts.length-1; myFullName++) {
+           allFullNames.push(contacts[myFullName].nameFirst + " " + contacts[myFullName].nameLast);
+          }
+          return allFullNames.join("\n");
         }
+        
     }
-}
+};
 
 
 
