@@ -63,10 +63,13 @@ function remove(animals, name) {// function declaration named remove that accept
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function add(array, obj) {
-if (obj.hasOwnProperty(["name"]) && obj["name"].length > 0 && Object.species > 0 && obj["name"] !== array["name"]) {
-  array.push(obj);
-}
+function add(array, animal) {// function declaration add that accepts two parameters: 
+  //an array of animals and an object to be added into that array
+  for (var i = 0; i <= array.length - 1; i++) {
+    if (animal.hasOwnProperty("name") && animal["name"].length > 0 && animal.hasOwnProperty("species") && animal["species"].length > 0 && array[i].name !== animal["name"]) {
+           array.unshift(animal);
+    }
+  }
 }
 // ## Step 4 - Add
 //  1. Write a function declaration called `add` with a signature of `add(animals, animal) { //... }` that:
