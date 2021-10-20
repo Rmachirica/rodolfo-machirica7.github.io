@@ -104,6 +104,7 @@ function getRandom(array) {
   var myIndexes = [];
  for (var i = 0; i <= array.length - 1; i++) {
       myIndexes.push(i);
+      console.log(myIndexes);
  }
    var myRandomNumber = Math.floor(Math.random() * (myIndexes[myIndexes.length -1]  - myIndexes[0] + 1)) + myIndexes[0];
    console.log(myRandomNumber);
