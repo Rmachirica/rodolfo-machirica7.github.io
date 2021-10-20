@@ -94,15 +94,29 @@ animals.push(africanLion, cat);// pushes cat and africanLion objects into the an
 //////////////////////////////////////////////////////////////////////
 /**
  * In my opinian, the better suited data structure to hold this list of friends would be an array.
- * Arrays arrange things or objects and other data types, in a meaningful listed way make it 
- * quite simple to access its elements.
+ * Arrays arrange things or values in a list-like structure, make it 
+ * quite simple to access its elements. An object wouldn't be necessary here because our data doesn't come in pairs
  */
-var friends = [];
+var friends = []; // an friend array was created for storing friends of the animals
+
 
 function getRandom(array) {
-  // console.log(Math.random(array) + 1);
-  return (Math.random(array) + 1);
-}
+  var myIndexes = [];
+ for (var i = 0; i <= array.length - 1; i++) {
+      myIndexes.push(i);
+ }
+   var myRandomNumber = Math.floor(Math.random() * (myIndexes[myIndexes.length -1]  - myIndexes[0] + 1)) + myIndexes[0];
+   console.log(myRandomNumber);
+    return myRandomNumber;
+};
+// using a random index from the function, get a random animal and it's name.
+var index = getRandom(animals);
+console.log(index);
+var newIndex = friends.push(animals[index].name);
+console.log(newIndex); 
+// Using bracket notation add the friends list to an animal with a key of friends
+animals[0]["friends"] = friends; // adds friends to the first object in array animal
+
 
 /**
  * Nice work! You're done Part 1. Pat yourself on the back and

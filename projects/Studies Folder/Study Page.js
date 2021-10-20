@@ -92,6 +92,89 @@ var mySelf = {// the strings on the left side of the values are the keys/propert
 };
 
 
+/**
+ * operators 
+ *0.  Operators are imposing behaviors-- they perfom an action our data, thus, provoking changes. 
+ * Operators are group by classes, and there are a few classes of operators:
+ * 
+ *1 Arithmetic operators-- are those that take numerical values either constant expressions or staments as their operands and return a single value. Here they are:
+ * addition (+), subtraction (-), division (/), multiplication (*), remeinder (%), exponent (**). 
+ * 
+ * 2 Assignment operators-- are those that assign values to JavaScript variables. These are the common assignment operators:
+ *2.1   (=) assigns a value to a variable.
+ *2.2  (+=) plus equals adds a value to the variable;
+ *2.3  (-+) minus equals subtracts a value from a variable;
+ *2.4  (/=) division equal divides a variable by a value
+ *2.5  (*=) multiplication equals multiplies a varible by a value;
+ *2.6  (%=) assignment remeinder, assigns a remeinder to a variable;
+ * 
+ * 3. Comparison operators-- are those that compare two different operunds in a boolean context and return a boolean (true or false). 
+ * The most common comparison operators are: 
+ * 3.1 strict equality (===), which checks to see if the operand on the left is exactly equal to the operand on the rigth and returns true or false;
+ * 3. 2 equality operator (==), which checks to see if the operand on the left is equal to the one on the right, and it does type conversion, meaning if the values are 
+ of different type it will convert them into the same type and then compare again and return true or false;
+ *3.3 Strictly inequality (!==), which checks to see if the operand on the left is exactly not equal to the operand on the rigth and returns true or false;
+ *3. 4 Inequality operator (!=), which checks to see if the operand on the left is not equal to the one on the right, and it does type conversion, meaning if the values are 
+ of different type it will convert them into the same type and then compares again and return true or false;
+ * 3.5 Greater (>) and less than (<), these compare two operands and return true or false based on the values and criteria.
+ *3.6 Greater than or equal (>=) and less than or equal (<=), these compare the operands and resolves to true or false based to the valitidy of the expression.
+
+ *4. Logical operators
+ Logical operators are used to determine the logic between variables or values and resolves the operation to true or false. Here are the common logical operators:
+ *4.1 The and operator (&&), when used in boolean context (boolean expressions) it rturns true if both operands evaluate to true otherwise it returns false;
+ 
+ *4.2 The logical operator Or (||), when used in the boolean context the || operator returns true if either of the operands is true and if both are false then it return false
+
+* 4.3 Logical Not (!), returns false if it's single operand can be converted to true otherwise it returns true.
+
+*5. Unary operator-- is an operation with only one operand. Some of unary operators include: 
+*5.1 typeof, acts on a single operand or value and returns it's data type;
+*5.2 instance of, acts on a single operand and returns true or false based on the operand being or not an instance of a particular object type. 
+*5.3 in operator, returns true if a specific property is a property in the specified object. 
+
+*6. Conditional or ternary operator-- it is an operator that takes thre operands, conditon ? expr1 : exp2;
+
+ */
+
+// Examples of practical use of operators
+
+//Assignment operators
+var cityName = "Tanganhica" // Here (=) assigns the string value "Tanganhica" to the variable name;
+
+cityName += " Thomas"; // here (+=) adds to cityName the string "Thomas". Now cityName = "Tanganhica Thomas";
+
+var number = 16;
+number /= 4; // here (/=) divides number by 4. Now number = 4;
+
+var remainder = number %= 3; // here (%=) assigns the remainder of number% 3 to remainder. remainder = 1;
+
+// comparison operators
+var greatThan = 9 > 4; // returns true
+
+var strictEquality = "Anna" === "Anna"; // returns true;
+
+var equalityOperator = "12" == 12  // converts "12" into number and returns true;
+
+var strictlyNotEqual = "Anna" !== "anna"; // returns false because "Anna" is not exactly the same as "anna", not in value;
+
+// logical operators
+
+var andOperator = 9 > 6 && 6 > 5; // returns true
+
+var anotherAndOperator = "Anna" === "Anna" && "car" !== "car"; // returns false because the second boolean expression resolves to false
+
+var orOperator = true || false // returns true 
+var anotherOrOperator = false || false // returns false
+
+var notOperator = !true; // returns false;
+var anotherNotOperator = typeof "Anna" === "string" && "Anna" !== "number"; // returns true;
+
+// Unary operators
+var typeOf = typeof number; // returns "number";
+
+var newDate = Date();
+var instanceOf = newDate instanceof Date; // returns false
+
 
 
 
