@@ -3,10 +3,9 @@
 // Step 1 - Search ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 function search(array, name) {// Declares a function named search that takes an array as a parameter
-    // This functions looks trhough array and returns an object if string === key name of that object
     for (var i = 0; i <= array.length-1; i++) {
         if (array[i].name === name) {
-          return  array[i]; // returns object if name name is a name it that specified object.
+          return  array[i]; // returns object if name is a name it that specified object.
         } 
       }
       return null;// returns null if name is not found in any object
@@ -26,39 +25,40 @@ function replace(array, name, obj) {// function declaration that takes three par
      }
   
   }
-  
+  // Replace() works: replace(animals, "Jerome", {});
 
 //////////////////////////////////////////////////////////////////////
 // Step 3 - Remove ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function remove(animals, name) {// function declaration named remove that accepts two parameters: an array 
+function remove(array, name) {// function declaration named remove that accepts two parameters: an array 
     //and an animal parameter representing the name of an animal inside that array
-    for (var i = 0; i <= animals.length - 1; i++) {// iterates through array to access it's individual entry
-        if (animals[i].name === name) {
-            animals.splice(i, 1);
+    for (var i = 0; i <= array.length - 1; i++) {// iterates through array to access it's individual entry
+        if (array[i].name === name) {
+            array.splice(i, 1); // finds the object at the i of the array parameter and removes it.
         }
 
     }
 }
-
+// The remove function works : remove(animals, "Jerome")
 
 
 //////////////////////////////////////////////////////////////////////
 // Step 4 - Add ///////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-function add(arr, obj) {
-   var nameMatch = false;
+function add(arr, obj) {// function declaration that takes two parameters:
+    // an array and an object
+   var nameMatch = false; // boolean flag variable used to check conditional statements
    for (var i = 0; i < arr.length; i++) {
-       if (arr[i].name === obj.name) {
-           nameMatch = true;
+       if (arr[i].name === obj.name) {// check if any name in any of the objects contained in arr
+        //equals a name in the object to be added, if true, then:
+           nameMatch = true; // sets our boolean flag variable to true
        }
    }
    if (nameMatch === false && obj.name.length > 0 && obj.species.length > 0) {
-       arr.push(obj);
+       arr.push(obj); // adds obj to arr if all conditions are met.
    }
 }
-//loop through the other names and compare arr[i].name to obj.name
 
 
 /**
