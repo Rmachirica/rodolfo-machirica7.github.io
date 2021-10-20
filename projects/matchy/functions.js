@@ -43,8 +43,8 @@ function replace(array, name, obj) {
 function remove(animals, name) {// function declaration named remove that accepts two parameters: an array 
     //and an animal parameter representing the name of an animal inside that array
     for (var i = 0; i <= animals.length - 1; i++) {// iterates through array to access it's individual entry
-        if (animals[i].includes(name)) {
-            animals.splice(i, 1);
+        if (animals[i].name === name) {
+            animals.splice(i , 1);
         }
 
     }
