@@ -3,39 +3,70 @@
 //////////////////////////////////////////////////////////////////////
 
 function objectValues(object) {
-
+return Object.values(object);
 } 
 
 //////////////////////////////////////////////////////////////////////
 // Function 2 - Keys to String ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function keysToString(object) {
-
+function keysToString(object) {// 
+return Object.keys(object).join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 3 - Values to String /////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function valuesToString(object) {
-    
+function valuesToString(object) {// takes an object and returns 
+     //find all string values in an object looping and using typeof
+     var arr1 = [];
+     for (var key in object) {
+       // if typeof object[key] === string, push object[key] into arr1
+         if (typeof object[key] === "string") {
+           arr1.push(object[key]);
+         }
+     }
+     //return concatenated arr1 elements with spaces
+    return arr1.join(" ");
+ 
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 4 - Array or Object //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function arrayOrObject(collection) {
-    
+function arrayOrObject(collection) {// takes a parameter collection and
+    //checks to see that it it's an array and returns "array" or "object"
+
+   //test if array => 
+  if (Array.isArray(collection)) {
+    //return "array" if true
+    return "array";
+  }  
+  else if (typeof(collection) === "object") {
+    //return "object"
+    return "object";
+  }
+
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 5 - Capitalize Word //////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function capitalizeWord(string) {
-    
+function capitalizeWord(string) {// takes string as a parameter
+    // uses toUpperCase() and returns a caplitalized string
+     //Split string into letters => ["h", "e", "l", "l", "o"]
+     var splitStr = string.split("");
+     console.log(splitStr);
+     //toUpperCase() the first letter => ["H"]
+     var capLetter = splitStr[0].toUpperCase();
+     //splice capH into splitStr[0] => ["H", "e", ...]
+     splitStr.splice(0, 1, capLetter);
+     console.log(splitStr);
+     //join into one string again => "Hello"
+     return splitStr.join(""); 
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -43,7 +74,20 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+  var captalizedWords = "";
+  // split the string into an array => 
+  var splitPhrase = string.split(" ");// ["a", "am", "a", "cat"]
+    //console.log(splitPhrase);
+  for (var i = 0; i < splitPhrase.length; i++) {
+    //console.log(splitPhrase[i])
+    var split = splitPhrase[i].replace(splitPhrase[i][0], splitPhrase[i][0].toUpperCase())
+    console.log(split);
+    //console.log(typeof(split))
+    captalizedWords += split + " ";
+  }
+  // join our array of strings into a a single string: expect => "I Am A Cat"
+      return captalizedWords.trim();
+
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -51,6 +95,8 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
+  // function takes an object with a name property and returns: "Welcome <Name>!"
+  return "Welcome " + object["name"].replace(object.name[0], object.name[0].toUpperCase()) + "!";
 
 }
 
