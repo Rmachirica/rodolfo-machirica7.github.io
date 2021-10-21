@@ -101,14 +101,14 @@ var friends = []; // an friend array was created for storing friends of the anim
 
 
 function getRandom(array) {
-  var myIndexes = [];
- for (var i = 0; i <= array.length - 1; i++) {
-      myIndexes.push(i);
-      console.log(myIndexes);
+  var arrayIndexes = [];// declares an array to poplutate with array's indexes
+ for (var i = 0; i <= array.length - 1; i++) {// iterates through array to access individual values
+      arrayIndexes.push(i); // pushes array's indexes into the 
+      console.log(arrayIndexes);
  }
-   var myRandomNumber = Math.floor(Math.random() * (myIndexes[myIndexes.length -1]  - myIndexes[0] + 1)) + myIndexes[0];
+   var myRandomNumber = Math.floor(Math.random() * (arrayIndexes[arrayIndexes.length -1]  - arrayIndexes[0] + 1)) + arrayIndexes[0];
    console.log(myRandomNumber);
-    return myRandomNumber;
+    return myRandomNumber;// returns a random array culculated by Math.floor(Math.random(max - min) + 1) + min
 };
 // using a random index from the function, get a random animal and it's name.
 var index = getRandom(animals);
