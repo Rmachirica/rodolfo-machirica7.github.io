@@ -119,16 +119,16 @@ function profileInfo(object) {
 //////////////////////////////////////////////////////////////////////
 
 function maybeNoises(object) {
-  
+  //takes an object and if object has a noises array return the array's
+  // content as a string separated by space
   for (var key in object) {
-    if (object.hasOwnProperty(key)  && key === "noises" && Array.isArray(key)) {
-      var myKey = key.join(" ");
-      console.log(myKey);
-      return myKey;
-    }
-  }  if ( key = []) {
-return "there are no noises";
+    // checks if "noises" is a property in object and that it is an array
+    if (object.hasOwnProperty("noises") && object["noises"].length > 0) {
+
+     return object["noises"].join(" ");
+    } 
   }
+  return "there are no noises";
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -163,28 +163,44 @@ return object;
 
 function isFriend(name, object) {
 // takes a name and an object
-if (object.friends.includes(name)) {
-  // return true if name is a friend of object 
-  return true;
-} 
-return false;
-// else return false
+ if (object.hasOwnProperty("friends") && object["friends"].includes(name)) {
+   return true;  // return true if name is a friend of object 
+ } else 
+  
+  return false; // return false if name is not a friend of friends array
+
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 13 - Non-Friends /////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
 function nonFriends(name, array) {
- 
+  // Take a string name and an array of people objects with a friends key 
+  // = [] and return a new array of the people that <name> is not friends with 
+  var newArr = []; // var newArr = [];// Declares an array to populate with nonFriends later on
+   // iterate through the array at people to access each person object
+  for (var i = 0; i < array.length; i++) { 
+    //check if name is not contained in the friends array
+    if ((array[i].friends.includes(name) ||
+    array[i].name === name) === false){
+    // push name value into newArr
+    newArr.push(array[i].name);
+    }
+  }
+  //return newArr;
+  return newArr;
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 14 - Update Object ///////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function updateObject(object, key, value) {
-
+function updateObject(object, key, value) { // function takes an object with a key and a value
+  if (object[key] !== null) {
+  object[key] = value;
+  } else {
+    object[key] = [value];
+  }
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -200,7 +216,8 @@ function removeProperties(object, array) {
 //////////////////////////////////////////////////////////////////////
 
 function dedup(array) {
-
+ 
+return newArr = [... new Set(array)];
 }
 
 //////////////////////////////////////////////////////////////////////
