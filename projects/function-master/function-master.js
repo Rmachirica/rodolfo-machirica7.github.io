@@ -196,27 +196,36 @@ function nonFriends(name, array) {
 //////////////////////////////////////////////////////////////////////
 
 function updateObject(object, key, value) { // function takes an object with a key and a value
-  if (object[key] !== null) {
-  object[key] = value;
-  } else {
-    object[key] = [value];
-  }
-}
+  // function takes an object with a key and a value
+      object[key] = value;
+    // returns the object with key updated or created
+    return object;
+    
+} 
 
 //////////////////////////////////////////////////////////////////////
 // Function 15 - Remove Properties ///////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-function removeProperties(object, array) {
-
+function removeProperties(object, array) {// takes an oject and an array of strings 
+  
+//iterates through array to access each individual string
+for (var i = 0; i < array.length; i++) {
+// checks if array[i] is a property in object
+  if (object.hasOwnProperty(array[i])) {
+      //remove any property that are listed in the string.
+      delete object[array[i]];
+    }
+  }
 }
 
 //////////////////////////////////////////////////////////////////////
 // Function 16 - Dedup ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
+// function takes a parameter array
 function dedup(array) {
- 
+ // return a new array with all the duplicates removed
 return newArr = [... new Set(array)];
 }
 
