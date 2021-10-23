@@ -208,15 +208,19 @@ function updateObject(object, key, value) { // function takes an object with a k
 //////////////////////////////////////////////////////////////////////
 
 function removeProperties(object, array) {// takes an oject and an array of strings 
-  
-//iterates through array to access each individual string
-for (var i = 0; i < array.length; i++) {
-// checks if array[i] is a property in object
-  if (object.hasOwnProperty(array[i])) {
-      //remove any property that are listed in the string.
-      delete object[array[i]];
+//create array of all keys 
+var arrKeys = Object.keys(object);
+//find any arrKeys indexes that are listed in array
+//outer loop is arrKeys
+for (var i = 0; i < arrKeys.length; i++) {
+  //inner loop is arr2
+  for (var j = 0; j < array.length; j++){
+    //compare operation 
+    if (arrKeys[i] === array[j]) {
+    delete object[arrKeys[i]];
     }
   }
+}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -226,7 +230,7 @@ for (var i = 0; i < array.length; i++) {
 // function takes a parameter array
 function dedup(array) {
  // return a new array with all the duplicates removed
-return newArr = [... new Set(array)];
+return newArr = [...new Set(array)];
 }
 
 //////////////////////////////////////////////////////////////////////
