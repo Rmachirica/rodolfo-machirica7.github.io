@@ -58,6 +58,9 @@ function makeContactList() {
         },
         addContact: function(contact) {
             contacts.push(contact);
+            console.log(contacts);
+            console.log(contacts.length);
+
         },
         findContact: function(fullName) {// takes a fullName string and returns the object if found in the contacts or undefined if not
             var splitFullName = fullName.split(" ");// splits fullName into nameFirst and nameLast to then compare with the first and last name in the contact.list

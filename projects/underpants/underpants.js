@@ -80,7 +80,23 @@ if (typeof value === "string") {
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
-
+_.first = function(array, num) {
+    // if array is not an array or if num is negative return [];
+    var newArr = [];
+   if (Array.isArray(array) === false) {
+       return [];
+   } else if (num === null || isNaN(num)) {
+       return array[0];
+   } else if (num <= 0) {
+        return [];
+   } else if (num > array.length) {
+       return array;
+   } 
+   for (var i = 0; i < num; i++) {
+       newArr.push(array[i]);
+   }
+   return newArr;
+}
 
 /** _.last
 * Arguments:
@@ -100,7 +116,24 @@ if (typeof value === "string") {
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
-
+     _.last = function(array, num) {
+    // if array is not an array or if num is negative return [];
+    var newArr = [];
+   if (Array.isArray(array) === false) {
+       // returns [] if array is not an array
+       return [];
+   } else if (num === null || isNaN(num)) {
+       // return last element of the array
+       return array[array.length - 1];
+   } else if (num < 0) {//
+        return [];
+   } else if (num > array.length) {
+       return array;
+   }  else {
+    newArr = array.slice(-num);
+   }
+   return newArr;
+}
 /** _.indexOf
 * Arguments:
 *   1) An array
@@ -116,7 +149,17 @@ if (typeof value === "string") {
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
-
+_.indexOf = function(array, value) {
+    // write a fool loop to iterate through array to access elements
+    for(var i = 0; i < array.length; i++) {
+        // checks for the index of value at array[i]
+        if (array[i] === value) {
+            console.log(i);
+          return i;
+        }
+    }
+    return -1;
+}
 
 /** _.contains
 * Arguments:
@@ -132,7 +175,10 @@ if (typeof value === "string") {
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
-
+_.contains = function(array, value) {
+    // ternary operator checks if value is an item in array
+    return array.includes(value) ? true : false;
+}
 
 /** _.each
 * Arguments:
@@ -149,7 +195,20 @@ if (typeof value === "string") {
 *   _.each(["a","b","c"], function(e,i,a){ console.log(e)});
 *      -> should log "a" "b" "c" to the console
 */
-
+_.each = function(collection, func) {
+// checks if collection is an array 
+if (Array.isArray(collection)) {
+    //iterate though collection to access it's values and indexes
+    for (var i = 0; i < collection.length; i++) {
+        //call func with args: collection[i], i, collection
+        func(collection[i], i, collection);
+    }
+} else if (typeof collection === "object" && collection !== null && collection instanceof Date === false) {
+    for (var key in collection ) {
+        func(collection[key], key, collection);
+    }
+}
+}
 
 /** _.unique
 * Arguments:
@@ -160,7 +219,16 @@ if (typeof value === "string") {
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
-
+_.unique = function(array) {
+    var uniqueItems = [];
+    for (var i = 0; i < array.length; i++) {
+        if (this.indexOf(uniqueItems, array[i]) < 0) {
+            uniqueItems.push(array[i]);
+            console.log(uniqueItems);
+        }
+    }
+   return uniqueItems;
+}
 
 /** _.filter
 * Arguments:
@@ -177,7 +245,15 @@ if (typeof value === "string") {
 * Extra Credit:
 *   use _.each in your implementation
 */
-
+_.filter = function(array, func) {
+    var newArray = [];
+    for (var i = 0; i < array.length; i++) {
+    if (func(array[i], i, array)) {
+        newArray.push(array[i]);
+    }
+    }
+   return newArray
+}
 
 /** _.reject
 * Arguments:
@@ -191,7 +267,15 @@ if (typeof value === "string") {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
-
+_.reject = function(array, func) {
+    var falseReturns = [];
+    for (var i = 0; i < array.length; i++) {
+        if (func(array[i], i, array) === false) {
+            falseReturns.push(array[i]);
+        }
+    }
+    return falseReturns;
+}
 
 /** _.partition
 * Arguments:
@@ -211,7 +295,23 @@ if (typeof value === "string") {
 *   }); -> [[2,4],[1,3,5]]
 }
 */
+_.partition = function(array, func) {
+      var subArrays = [];
+      for (var i = 0; i < array.length; i++) {
+          var truthy = [];
+          var falsey = [];
+          if (func(array[i], array[i][key], array) === true) {
+              truthy.push(array[i][key]);
+              subArrays.push(truthy);
+              console.log(subArrays);
+            }  else if (func(array[i], array[i][key], array) === false) {
+                falsey.push(array[i][key]);
+                subArrays.push(falsey);
+          }
 
+   }
+   return subArrays;
+}
 
 /** _.map
 * Arguments:
@@ -240,7 +340,9 @@ if (typeof value === "string") {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+_.pluck = function (array, property) {
 
+}
 
 /** _.every
 * Arguments:
