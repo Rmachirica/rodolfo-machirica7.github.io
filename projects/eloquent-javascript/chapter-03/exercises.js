@@ -34,9 +34,9 @@ function isEven(num) {
 
 function countChars(string, ch) {
   // declares a counting variable and set it to 0
-  let counted = 0;
+  var counted = 0;
   // iterates through string 
-  for (let i = 0; i < string.length; i++) {
+  for (var i = 0; i < string.length; i++) {
     // looks to see if strings[i] equals the character ch
      if (string[i] == ch) {
        counted += 1;

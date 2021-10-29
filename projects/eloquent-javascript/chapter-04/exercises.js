@@ -2,18 +2,29 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range(startNum, endNum, step = startNum < endNum ? 1 : -1) {
-  var array = [];
-
-  if (startNum === endNum) {
+function range(startNum, endNum, step) {
+  var min = Math.min(startNum, endNum);
+  // find max of range
+  var max = Math.max(startNum, endNum);
+  var newRange = [];
+  // find the minimum of range
+  if (step) {
+    if (step > 0) {
+      for (var i = min; i <= max; i+= step) {
+        // now we push the value of i into our newRange array.
+        newRange.push(i);
+      }
+    }else if (step <= 0) {
+      return [];
+    }
+  } else if (min === max) {
     return [];
-  }
-    for (let i = startNum; i <= endNum; i += step) array.push(i);
   } else {
-    for (var i = startNum; i >= endNum; i += step) array.push(i);
+    for (var j = min; j <= max; j++) {
+      newRange.push(j);
+    }
   }
-  return array;
-
+  return newRange;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -26,23 +37,48 @@ function sum(array) {
   sum1 = sum1 + array[i];
   }
   return sum1;
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
-
+function reverseArray(array) {
+  // constructive manipulation of data by copying
+  var newArr = array.slice();
+  // array for reversed newArr
+  var reversedArr = [];
+// write a for loop to loop over array backwards
+for (var i = newArr.length -1; i >= 0; i--) {
+  //push values of newArr[i] to reversedArr
+    reversedArr.push(newArr[i]);
+}
+  return reversedArr;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
-
+function reverseArrayInPlace(array) {
+  var reversedArr = [];
+  // write a for loop to loop over array backwards
+  for (var i = array.length - 1; i >= 0; i--) {
+    //console.log(array[i]);
+    //push values of newArr[i] to reversedArr
+      reversedArr.push(array[i]);
+  }
+  // if our input array was ["a", "b", "c", "d"]
+  // Now reversedArr => ["d", "c", "b", "a"]
+  // loop over reversedArr
+  for(var j = 0; j <= reversedArr.length - 1; j++) {
+    //console.log(reversedArr[j]);
+  //splice reversedArr[i] into  arr at i
+   array.splice(j, 1, reversedArr[j]);
+  
+  }
+  //console.log(array);
+  return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +86,7 @@ function reverseArrayInPlace() {
 ////////////////////////////////////////////////////////////////////////////////
 
 function arrayToList() {
+
 
 }
 
