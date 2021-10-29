@@ -2,7 +2,17 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range() {
+function range(startNum, endNum, step = startNum < endNum ? 1 : -1) {
+  var array = [];
+
+  if (startNum === endNum) {
+    return [];
+  }
+    for (let i = startNum; i <= endNum; i += step) array.push(i);
+  } else {
+    for (var i = startNum; i >= endNum; i += step) array.push(i);
+  }
+  return array;
 
 }
 
@@ -10,7 +20,12 @@ function range() {
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
+function sum(array) {
+  var sum1 = 0;
+  for (var i = 0; i <= array.length -1; i++) {
+  sum1 = sum1 + array[i];
+  }
+  return sum1;
 
 }
 

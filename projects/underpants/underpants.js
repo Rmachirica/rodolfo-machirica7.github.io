@@ -154,7 +154,7 @@ _.indexOf = function(array, value) {
     for(var i = 0; i < array.length; i++) {
         // checks for the index of value at array[i]
         if (array[i] === value) {
-            console.log(i);
+            //console.log(i);
           return i;
         }
     }
@@ -224,7 +224,7 @@ _.unique = function(array) {
     for (var i = 0; i < array.length; i++) {
         if (this.indexOf(uniqueItems, array[i]) < 0) {
             uniqueItems.push(array[i]);
-            console.log(uniqueItems);
+            //console.log(uniqueItems);
         }
     }
    return uniqueItems;
@@ -252,7 +252,7 @@ _.filter = function(array, func) {
         newArray.push(array[i]);
     }
     }
-   return newArray
+   return newArray;
 }
 
 /** _.reject
@@ -297,19 +297,18 @@ _.reject = function(array, func) {
 */
 _.partition = function(array, func) {
       var subArrays = [];
+      var truthy = [];
+      var falsey = [];
       for (var i = 0; i < array.length; i++) {
-          var truthy = [];
-          var falsey = [];
-          if (func(array[i], array[i][key], array) === true) {
-              truthy.push(array[i][key]);
-              subArrays.push(truthy);
-              console.log(subArrays);
-            }  else if (func(array[i], array[i][key], array) === false) {
-                falsey.push(array[i][key]);
-                subArrays.push(falsey);
-          }
-
-   }
+          //console.log(subArrays);
+          if (func(array[i], i , array)) {
+              truthy.push(array[i]);
+            }  else if (func(array[i], i, array) === false) {
+                falsey.push(array[i]);
+            } 
+        }
+        subArrays.push(truthy, falsey);
+        // return subArray => [[truthy], [falsey]];
    return subArrays;
 }
 
@@ -328,7 +327,21 @@ _.partition = function(array, func) {
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
-
+_.map = function(collection, func) {
+    var passedValues = [];
+    if (Array.isArray(collection)) {
+        //iterate though collection to access it's values and indexes
+        for (var i = 0; i < collection.length; i++) {
+            //call func with args: collection[i], i, collection
+            passedValues.push(func(collection[i], i, collection));
+        }
+    } else if (typeof collection === "object" && collection !== null) {
+        for (var key in collection ) {
+            passedValues.push(func(collection[key], key, collection));
+        }
+    }
+    return passedValues;
+}
 
 /** _.pluck
 * Arguments:
@@ -341,7 +354,15 @@ _.partition = function(array, func) {
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
 _.pluck = function (array, property) {
-
+    var newItems = []; // Declares an array for items that pass the map function.
+   //console.log(array, property);
+   //this.map() iterates through array using map
+         newItems = this.map(array, function(element){
+       // returns the value of property in the object element
+      return element[property];
+   });
+   // returns the new array of elements
+  return newItems;
 }
 
 /** _.every
@@ -363,7 +384,39 @@ _.pluck = function (array, property) {
 * Examples:
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
-*/
+*/      
+    _.every = function(collection, func) {
+      var truthy = true;
+      if (!func) {
+       if (Array.isArray(collection)) {
+        for (var k = 0; k < collection.length; k++) {
+          if (!collection[k]) {
+            truthy = false;
+          }
+        }
+      } else if (typeof collection === "object") {
+        for (var key in collection) {
+          if (collection[key] === false) {
+            truthy = false
+          }
+        }
+      } 
+    } else if (Array.isArray(collection)) {
+      //console.log(collection[0]);
+      for (var i = 0; i < collection.length; i++) {
+        if (func(collection[i], i, collection) === false) {
+          truthy = false;
+        } 
+      }
+    } else if (typeof collection === "object") {
+      for (var key in collection) {
+        if (func(collection[key], key, collection) === false ) {
+          truthy = false;
+        }
+      }   
+    }
+    return truthy;
+   }
 
 
 /** _.some
@@ -386,7 +439,38 @@ _.pluck = function (array, property) {
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
-
+_.some = function(collection, func) {
+  var falsey = false;
+  if (!func) {
+   if (Array.isArray(collection)) {
+    for (var k = 0; k < collection.length; k++) {
+      if (collection[k]) {
+        falsey = true;
+      }
+    }
+  } else if (typeof collection === "object") {
+    for (var key in collection) {
+      if (collection[key]) {
+        falsey = true;
+      }
+    }
+  } 
+} else if (Array.isArray(collection)) {
+  //console.log(collection[0]);
+  for (var i = 0; i < collection.length; i++) {
+    if (func(collection[i], i, collection)) {
+      falsey = true;
+    } 
+  }
+} else if (typeof collection === "object") {
+  for (var key in collection) {
+    if (func(collection[key], key, collection)) {
+      falsey = true;
+    }
+  }   
+}
+return falsey;
+}
 
 /** _.reduce
 * Arguments:
@@ -406,7 +490,26 @@ _.pluck = function (array, property) {
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
-
+_.reduce = function (array, func, seed) {  
+  // checks if seed is undefined
+if (seed === undefined) {
+  // sets seed to array[0];
+    seed = array[0];
+    // iterates through array
+    for (var i = 1; i < array.length; i++) {
+      // seeed accumulates the value of calling function on seed, array[i], i
+      seed = func(seed, array[i], i)
+    }
+  } else {
+    //iterate trough array 
+      for (var i = 0; i < array.length; i++) {
+        // seed accumulates the values of calling func on seed, array[i], i
+          seed = func(seed, array[i], i)
+      }
+  }
+  // return seed
+  return seed;
+}
 
 /** _.extend
 * Arguments:
@@ -422,6 +525,12 @@ _.pluck = function (array, property) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+_.extend = function(object, object1, object2) {
+  // assigns object1 and object2 keys to object
+ Object.assign(object, object1, object2);
+ // returns object
+ return object;
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
