@@ -48,40 +48,52 @@ console.log( myName, myAge); // prints Elijah, 2.5 to the console.
  * 
  * 1.
  * 1. Primitive data type
- * The primitive data are immutable-- meaning that they can't be changed or mutated, that is, their individual characters.Howerver, they can be updated if assigned to a var or let variables.
+ * The primitive data are immutable-- meaning that they can't be changed or mutated, that is, 
+ * their individual characters.Howerver, they can be updated if assigned to a var or let variables.
  * 
  * 2. Complex data type (objects and arrays)
- * Arrays and objects are compolex data structures-- we can see them as containers for organized or meaningfully arranged collection of other types (primitive).
+ * Arrays and objects are complex data structures-- we can see them as containers for organized
+ *  or meaningfully arranged collection of other types (primitive).
  * 
  */
 
 // Example of simple/ primitive data types
-//1. Strings. A sequence of alphabetical characters and digits enclosed in double quotes ("Example Number 1") or single quotes ('Example number 2').
+//1. Strings. A sequence of alphabetical characters and digits enclosed in double quotes
+// ("Example Number 1") or single quotes ('Example number 2').
 
 var weatherToday = "Sunny"; // "Sunny" is a primitive data of string type and it's characters are immutable
 
-//1.2 Number and NaN. Single or sequence of digits, these can integers (1 or 2009 or 39...) or have a floating point (1.5 or 3.5 or 7.6 ...)
+//1.2 Number and NaN. Single or sequence of digits, these can integers (1 or 2009 or 39...) 
+//or have a floating point (1.5 or 3.5 or 7.6 ...)
 
 var highTemperatureToday = 75; // 75 is a primitive data of  type number  and it's digits are immutable
 var daysOfTheWeek = 17; // in a boolean context daysOfTheWeek will resolve to NaN because a week has 7 days.
 
-// 1.3 Boolean. The boolean primitive datum type represents a logical entity and can embody only eithe of these two values: true and false. 
+// 1.3 Boolean. The boolean primitive datum type represents a logical entity and can 
+//embody only eithe of these two values: true and false. 
 
 var adultsAllowedtoDrive = true; // the value of dultsAllowedtoDrive is of type boolean and is immutable. However, it can be updated. 
 
-//1.4 undefined. If a var or let variable is not initiated at the time of declaration then its value is automatically undefined, and immutable.
+//1.4 undefined. If a var or let variable is not initiated at the time of declaration
+// then its value is automatically undefined, and immutable.
 var yourFavoriteFood; // The value of yourFavorite food is undefined because yourFavoriteFood was not initiated.
 
 //Examples of complex data types.
 //2. Arrays-- a collection of data (primitive or complex) arranged in a form of a list.
-// Arrays are 0 indexed--meaning that each entry or element has a unique indexed position starting from index 0 (the first element) stoping at the position or index array[array.length-1] (the last element in the list).
-var namesAndInterets = [{name: "jonathan", interets: ["reading", "cooking", "design"]}, ["Amelia", "games", ["business", false]], {name: "Mark", interets: ["poetry", "painting", "soccer"]}];
+// Arrays are 0 indexed--meaning that each entry or element has a unique indexed position starting 
+//from index 0 (the first element) stoping at the position or index array[array.length-1] (the last element in the list).
+var namesAndInterets = [{name: "jonathan", 
+interets: ["reading", "cooking", "design"]}, ["Amelia", "games", ["business", false]], 
+{name: "Mark", 
+interets: ["poetry", "painting", "soccer"]}];
 
 // The above array has three elements each one with a specific index. The first element is at index 0, the second at index 1 and the third is at index 2.
 
 
-//2. 1 Objects-- a complex data structure arranged in key-value pairs. the keys are always of type "string" and the values can be anything from primitive  to complex data types, objects included.
-var mySelf = {// the strings on the left side of the values are the keys/properties and the data on the right side of the colons are the values.
+//2. 1 Objects-- a complex data structure arranged in key-value pairs. the keys are always
+// of type "string" and the values can be anything from primitive  to complex data types, objects included.
+var mySelf = {// the strings on the left side of the values are the 
+    //keys/properties and the data on the right side of the colons are the values.
     "name": "Rodolfo",
     "age": 31,
     "married": true,
@@ -97,10 +109,12 @@ var mySelf = {// the strings on the left side of the values are the keys/propert
  *0.  Operators are imposing behaviors-- they perfom an action our data, thus, provoking changes. 
  * Operators are group by classes, and there are a few classes of operators:
  * 
- *1 Arithmetic operators-- are those that take numerical values either constant expressions or staments as their operands and return a single value. Here they are:
+ *1 Arithmetic operators-- are those that take numerical values either constant expressions
+ * or staments as their operands and return a single value. Here they are:
  * addition (+), subtraction (-), division (/), multiplication (*), remeinder (%), exponent (**). 
  * 
- * 2 Assignment operators-- are those that assign values to JavaScript variables. These are the common assignment operators:
+ * 2 Assignment operators-- are those that assign values to JavaScript variables. 
+ * These are the common assignment operators:
  *2.1   (=) assigns a value to a variable.
  *2.2  (+=) plus equals adds a value to the variable;
  *2.3  (-+) minus equals subtracts a value from a variable;
@@ -108,28 +122,39 @@ var mySelf = {// the strings on the left side of the values are the keys/propert
  *2.5  (*=) multiplication equals multiplies a varible by a value;
  *2.6  (%=) assignment remeinder, assigns a remeinder to a variable;
  * 
- * 3. Comparison operators-- are those that compare two different operunds in a boolean context and return a boolean (true or false). 
+ * 3. Comparison operators-- are those that compare two different operunds 
+ * in a boolean context and return a boolean (true or false). 
  * The most common comparison operators are: 
- * 3.1 strict equality (===), which checks to see if the operand on the left is exactly equal to the operand on the rigth and returns true or false;
- * 3. 2 equality operator (==), which checks to see if the operand on the left is equal to the one on the right, and it does type conversion, meaning if the values are 
+ * 3.1 strict equality (===), which checks to see if the operand on the left is 
+ * exactly equal to the operand on the rigth and returns true or false;
+ * 3. 2 equality operator (==), which checks to see if the operand on the left is 
+ * equal to the one on the right, and it does type conversion, meaning if the values are 
  of different type it will convert them into the same type and then compare again and return true or false;
- *3.3 Strictly inequality (!==), which checks to see if the operand on the left is exactly not equal to the operand on the rigth and returns true or false;
- *3. 4 Inequality operator (!=), which checks to see if the operand on the left is not equal to the one on the right, and it does type conversion, meaning if the values are 
+ *3.3 Strictly inequality (!==), which checks to see if the operand on the left is 
+ * exactly not equal to the operand on the rigth and returns true or false;
+ *3. 4 Inequality operator (!=), which checks to see if the operand on the left is not 
+ * equal to the one on the right, and it does type conversion, meaning if the values are 
  of different type it will convert them into the same type and then compares again and return true or false;
- * 3.5 Greater (>) and less than (<), these compare two operands and return true or false based on the values and criteria.
- *3.6 Greater than or equal (>=) and less than or equal (<=), these compare the operands and resolves to true or false based to the valitidy of the expression.
+ * 3.5 Greater (>) and less than (<), these compare two operands and 
+ *return true or false based on the values and criteria.
+ *3.6 Greater than or equal (>=) and less than or equal (<=), these compare the operands 
+ and resolves to true or false based to the valitidy of the expression.
 
  *4. Logical operators
- Logical operators are used to determine the logic between variables or values and resolves the operation to true or false. Here are the common logical operators:
- *4.1 The and operator (&&), when used in boolean context (boolean expressions) it rturns true if both operands evaluate to true otherwise it returns false;
+ *Logical operators are used to determine the logic between variables or values and 
+ *resolves the operation to true or false. Here are the common logical operators:
+ *4.1 The and operator (&&), when used in boolean context (boolean expressions) it
+ * returns true if both operands evaluate to true otherwise it returns false;
  
- *4.2 The logical operator Or (||), when used in the boolean context the || operator returns true if either of the operands is true and if both are false then it return false
+ *4.2 The logical operator Or (||), when used in the boolean context the || operator 
+ *returns true if either of the operands is true and if both are false then it return false
 
 * 4.3 Logical Not (!), returns false if it's single operand can be converted to true otherwise it returns true.
 
 *5. Unary operator-- is an operation with only one operand. Some of unary operators include: 
 *5.1 typeof, acts on a single operand or value and returns it's data type;
-*5.2 instance of, acts on a single operand and returns true or false based on the operand being or not an instance of a particular object type. 
+*5.2 instance of, acts on a single operand and returns true or false based on the operand 
+*being or not an instance of a particular object type. 
 *5.3 in operator, returns true if a specific property is a property in the specified object. 
 
 *6. Conditional or ternary operator-- it is an operator that takes thre operands, conditon ? expr1 : exp2;
@@ -155,13 +180,13 @@ var strictEquality = "Anna" === "Anna"; // returns true;
 
 var equalityOperator = "12" == 12  // converts "12" into number and returns true;
 
-var strictlyNotEqual = "Anna" !== "anna"; // returns false because "Anna" is not exactly the same as "anna", not in value;
+var strictlyNotEqual = "Anna" !== "anna";// returns false because "Anna" is not exactly the same as "anna", not in value;
 
 // logical operators
 
 var andOperator = 9 > 6 && 6 > 5; // returns true
 
-var anotherAndOperator = "Anna" === "Anna" && "car" !== "car"; // returns false because the second boolean expression resolves to false
+var anotherAndOperator = "Anna" === "Anna" && "car" !== "car";// returns false because the second boolean expression resolves to false
 
 var orOperator = true || false // returns true 
 var anotherOrOperator = false || false // returns false
@@ -176,7 +201,40 @@ var newDate = Date();
 var instanceOf = newDate instanceof Date; // returns false
 
 
+/**
+ * String Manipulation
+ * 
+ * 0. String manipulation refers to how strings are or can be handled/used in 
+ * JavaScript programing.
+ * 1. There are two main branches relative to how strings are manipulated:
+ * 
+ * 1.1. manipulation with operators => strings use assignment operators (+=) 
+ * concatenation operator(+) and string interpolation with template literals(``)
+ * to change or mutate data in a way fits the programmer's intention. 
+ * 
+ * 1.2. manipulatation with methods => apart from operators, strings also dispose
+ * of built-in functions or methods to maximize the importance of strings as data type.
+ * These methods, transform orginal strings in a meaningful and productive way.
+ */
 
+//0. Operator string manipulation examples:
+
+//using += assigment operator
+var timeOfDay = "Morning";
+timeOfDay += " today is going to be a good day!"// assigns a new string to timeOfDay
+console.log(timeOfDay);// prints "Morning, today is going to be a good day!";
+
+//using concatenation
+var question = "what time is it?"
+
+console.log(timeOfDay + " " + question)// prints "Morning, what time is it?" to the console
+
+//using string interpolation and template literals
+console.log(`${timeOfDay}, afernoon...${question}`)// prints "Morining, afternoon...what time is it?"
+
+//1. String manipulation by methods, examples:
+
+//using the built-in methods to upperCase() and toLowerCase()
 
 
 
