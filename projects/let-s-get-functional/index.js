@@ -65,7 +65,7 @@ var youngestCustomer = function(customers) {
 
 var averageBalance = function(customers){
 
-  var reduced = customers.reduce(function(prev, current){
+  var reduced =_.reduce(customers, function(prev, current){
      var currbalance = Number(current.balance.replace(/[$,]/g, ""));
    console.log(currbalance);
    return currbalance += prev;
@@ -91,21 +91,34 @@ var firstLetterCount = function(customers, letter){
 
 var friendFirstLetterCount = function(customers,customer, letter) {
   // filter customer whose name is customer
-  var countFriends = customers.filter(currCustomer => currCustomer.name === customer);
+  var countFriends =_.filter(customers, currCustomer => currCustomer.name === customer);
   // filter friends array from customer and 
   var firstLetters = countFriends[0].friends.filter(friend=> friend.name[0].toLowerCase() === letter.toLowerCase());
   console.log(firstLetters);
   return firstLetters.length;
 }
 
-var friendsCount = function(customers, name) {
- // find the customers names that have a given customer's name in their friends list
- // find every customers friends array
- var customerFriendsArray
+
+  var friendsCount = function(customers, givenCustomerName) {
+    //iterate over customers array to access each customer object
+    var friendInList =_.filter(customers, function(customer){
+     
+    var friends = customer.friends;
+    //console.log(friends);
+    for (var i = 0; i < friends.length; i++) {
+      //console.log(friends[i])
+      if (friends[i].name === givenCustomerName) {
+        return true;
+      }
+    }
+    }).map(customer => customer.name);
+    
+    //console.log(friendInList)
+      return friendInList;// array of customers
 }
 var topThreeTags = function(array){
   //create a variable with an array of tag arrays
-  var tagsArray = array.map((val) => val.tags).reduce((prev, curr) => prev.concat(curr), []);
+  var tagsArray =_.map(array, (val) => val.tags).reduce((prev, curr) => prev.concat(curr), []);
 
   // console.log(tagsArray)
   // create obj to store key/value pairs of tags/occurrences
@@ -133,7 +146,10 @@ var topThreeTags = function(array){
 var genderCount = function(customers){
   var genderCount = function(customers){
     var genderNonBinary = _.reduce(customers, function(prevGender, currentGender){
-         return prevGender + (currentGender.gender === "");
+      if (currentGender.gender === "non-binary") {
+        prevGender += 1;
+      }
+      return prevGender;
     }, 0);
     return genderNonBinary;
   };
