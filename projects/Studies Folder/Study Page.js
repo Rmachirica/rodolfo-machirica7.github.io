@@ -225,7 +225,7 @@ timeOfDay += " today is going to be a good day!"// assigns a new string to timeO
 console.log(timeOfDay);// prints "Morning, today is going to be a good day!";
 
 //using concatenation
-var question = "what time is it?"
+var question = "what time is it?";
 
 console.log(timeOfDay + " " + question)// prints "Morning, what time is it?" to the console
 
@@ -234,7 +234,26 @@ console.log(`${timeOfDay}, afernoon...${question}`)// prints "Morining, afternoo
 
 //1. String manipulation by methods, examples:
 
-//using the built-in methods to upperCase() and toLowerCase()
+//using the built-in methods to upperCase() and toLowerCase() 
+var upperCaseString = question.toUpperCase();// prints => "WHAT TIME IS IT?"; to the console
+var lowerCaseString = question.toLocaleLowerCase();// prints=> "what time is it?" all characters are lowercase.
+
+// There are many more string manipulation methods, amongst them all is:
+//.split() => takes a string and with a specified delimeter it splits the string and returns an array
+var splitString = question.split(" ");// prints=> ["what", "time", "is", "it?"]
+
+// other methods include: toString()-- takes a number or other primitive values and forces them to string.
+var boolean = true;
+var stringBoolean = boolean.toString();// prints=> "true" to the console.
+
+
+/**
+ * Controle Flow
+ * 0. Control flow is a big topic and concept in JavaScript. At it's fundamental level, control flow
+ * refers to how code is run and interpreted by the JavaScript engine, which is from top to bottom.
+ * 
+ */
+
 
 
 
