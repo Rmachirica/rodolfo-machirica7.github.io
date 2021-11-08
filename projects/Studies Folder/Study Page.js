@@ -249,11 +249,67 @@ var stringBoolean = boolean.toString();// prints=> "true" to the console.
 
 /**
  * Controle Flow
- * 0. Control flow is a big topic and concept in JavaScript. At it's fundamental level, control flow
+ * 0. Control flow is a big concept in JavaScript. At it's fundamental level, control flow
  * refers to how code is run and interpreted by the JavaScript engine, which is from top to bottom.
+ * However, there are, in JavaScript, built-in structures that change the flow or order in which
+ * code normally runs. These structues are used for making decisions with our code, and thus, decide
+ * what we want to be excuted and what will be skipped. 
  * 
+ * 1. control flow structures:
+ * 
+ * 1.0. if statements and if-elseif-else statement chain: used for making decisions with our code based
+ * on an expression evaluating to true and false.The anatomical structure of if-elseif-else statements 
+ * looks like this: if (condition) {code block};
+ *  If, is the first conditional statement used in the if
+ *-elseif-else conditional statement chain. Also, if statement can exist and be used withought else-if 
+ * and else staments, these last ones are only in a chain and after an if statement.
+ * If boolean expression(condition1) evaluates to true
+ * the code in it's respective code block {} will be executed and returned or printed in the console
+ * and if it evaluates to false then it will be skipped and the next code block{} will execute
+ *  if its boolean expression(condition2) evaluate to true. Now, if the if statement(condition1) 
+ * evaluates to falsey and so does the else-if statement (condition2), then the else code block will execute. 
+ * The if-elseif-else conditional statement chain can have multiple else-ifs statements based on the re-
+ * quirement of the program.
+ * 
+ * 1.1: switch statements: similarly to if-elseif-else statements, switch statements is another control
+ * flow structure used for decision making. The anatomical structure of switch statements looks like this:
+ * switch (value to be evaluated) {
+ * case : //value to be matched goes here
+ * break; // stops the execution if match if found
+ * default: // if match if not found the value to be executed goes here
+ * };
+ * switch statements in the place of else, take a default statement, and in the place of a return statement
+ * take a break statement. That's how switch statements differ from if-elseif-else statements. 
  */
 
+ //Example of if/else-if/else statements implementation
+ var recursionIsTricky = "It's true for most beginners in programming";
+
+ if (recursionIsTricky === "It's true for most beginners in programming") {// the condition evaluates to true
+    console.log("You will get better with time and practice!");// This code block executes
+ } else if (recursionIsTricky === "for some people it's not") {// this code block is never reached
+     console.log("This is a rare case");
+ } else {// this code block is never reached
+     console.log("Word hard and you'll be a function master!");
+ }
+
+ // example of switch statement
+
+ switch (timeOfDay) {
+  case 1: "afternoon"; // this case clause will not execute-- it doesn't match timeOfDay
+  break;
+  case 2: "evening"; // this case clause will not execute-- it doesn't match timeOfDay
+  break;
+  case 3: "morning"; // this case clause will execute because it matches timeOfDay === "morning"
+  break;
+  default: "night"; // the default is never reached.
+ }
+
+
+ /**
+  * Loops
+  * 
+  */
 
 
 
