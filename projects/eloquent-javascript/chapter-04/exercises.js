@@ -10,7 +10,7 @@ function range(startNum, endNum, step) {
   // find the minimum of range
   if (step) {
     if (step > 0) {
-      for (var i = min; i <= max; i+= step) {
+      for (var i = min; i <= max; i += step) {
         // now we push the value of i into our newRange array.
         newRange.push(i);
       }
@@ -85,43 +85,87 @@ function reverseArrayInPlace(array) {
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
-
-
+function arrayToList(array) {
+let rest = null;
+// iterate through input array backwards
+for (var i = array.length -1; i >= 0; i--) {
+  //take rest and set it to an object with a key of value
+  rest = {value: array[i], rest};
+}
+return rest;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
-
+function listToArray(list) {
+  if (list.rest === null) {
+     return list.value;
+  } else {
+  
+    return [list.value].concat(listToArray(list.rest));
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
-
+function prepend(element, list) {
+ //initial value of rest
+ let rest = list;
+ //add element to list
+ rest = {value: element, rest}
+ return rest;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
-
+function nth(list, num) {
+  //if its 0, return list.value
+  if (num === 0) {
+    return list.value;
+  } else if(list.rest === null) {
+    return undefined;
+  } else {
+  //if its 1, return nth(list.rest, num - 1)
+  return nth(list.rest, num - 1);
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
-
-}
-
+function deepEqual(val1, val2) {
+  // determine if val1 is deeply equal to val2
+  if (typeof val1 !== "object" && typeof val2 !== "object") {
+    if (val1 === val2) {
+      return true;
+    }
+    return false;
+  } // termine if one of the values is null
+  if (val1 === null || val2 === null) {
+    return false;
+  }
+  // create arrays of the keys of input object
+  var a = Object.keys(val1);
+  var b = Object.keys(val2);
+  if (a.length !== b.length) {
+    return false;
+  }
+  // iterate through keys of a and b
+  for (var i = 0; i < a.length; i++) {
+    // check if element is included in b
+    if (!b.includes(a[i]) || !deepEqual(val1[a[i]], val2[b[i]])) {
+      return false;
+    }
+  }
+  return true;
+  }
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////

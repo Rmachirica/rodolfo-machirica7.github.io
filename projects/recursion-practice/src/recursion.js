@@ -164,17 +164,15 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
-  /* 0 multiplied with anything gives 0 */
-  if(y == 0 || x == 0)
-  return 0;
-
-  /* Add x one by one */
-  if(y > 0 )
-  return (x + multiply(x, y-1));
-
-  /* the case where y is negative */
-  if(y < 0 )
-  return -multiply(x, -y);
+  if (y === 1) {
+    return x;
+  } else if (y === -1) {
+    return -x; 
+  } else if (y < 0){
+    return (-x) + multiply(x, y + 1); 
+  } else {
+    return x + multiply(x, y - 1); 
+  }
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -189,7 +187,7 @@ var divide = function(x, y) {
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
-  if ( ! b) {
+  if (!b) {
     return a;
 }
 return gcd(b, a % b);
@@ -227,11 +225,14 @@ if (str.length === 0) {
 };
 
 // 17. Reverse the order of an array
-var reverseArr = function(array) {
+var reverseArr = function (array) {
+  //base case: 
   if(array.length === 0) {
-    return [];
- } else 
-  return reverseArr(array.slice(1)).concat(array[0]);//  b, a
+  return [];
+  } else {
+  //recursion: push avalues of newArr[i] to reversedArr
+  return [array[array.length -1], ...reverseArr(array.slice(0, array.length - 1))];
+  }
 };
 
 // 18. Create a new array with a given value and length.
@@ -323,35 +324,45 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 
-  var nthFibo = function(n) {
-    if (n < 0) {
-      return null;
-    }
-   else if (n === 1 || n === 0 || n === 2) {
+var nthFibo = function(n) {
+  if ( n === 0) {
+    return 0;
+  } else if (n < 0) {
+    return null;
+  } else if (n === 2 || n === 1) { 
     return 1;
-    } 
-    return nthFibo(n - 3) + nthFibo(n - 2) + nthFibo(n - 1);
+  } else {
+  //recursion: n = fib(n - 1) + fib(n - 2)
+    return nthFibo(n - 1) + nthFibo(n - 2)
+  };
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
-  if (input.length === 1) {
-    return [input[0].toUpperCase()];
-  }
-  let res = capitalizeWords(input.slice(0, -1));
-  res.push(input.slice(input.length-1)[0].toUpperCase());
-  return res;
- 
+  //base case: input.length === 0
+  if(input.length === 0) {
+    return [];
+  } else {
+    //recursion: take every index and .toUpperCase();
+    return [input[0].toUpperCase(), ...capitalizeWords(input.slice(1, input.length))];
+    }
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
-var capitalizeFirst = function(array, i) {
-  
- 
+var capitalizeFirst = function(array) {
+  //base case: input.length === 0
+  if(array.length === 0) {
+    return [];
+  } else {
+    //recursion: take every index and array[0][0].toUpperCase() + rest of word
+    return [array[0][0].toUpperCase().concat(array[0].slice(1, array[0].length)), 
+    ...capitalizeFirst(array.slice(1, array.length))];
+    }
 };
+
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
@@ -373,6 +384,7 @@ var flatten = function(arrays) {
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
 var letterTally = function(str, obj) {
+
 };
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
@@ -381,6 +393,7 @@ var letterTally = function(str, obj) {
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
 var compress = function(list) {
+
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
@@ -400,6 +413,11 @@ var minimizeZeroes = function(array) {
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
+  // base case
+
+
+  //recursive case
+  
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.

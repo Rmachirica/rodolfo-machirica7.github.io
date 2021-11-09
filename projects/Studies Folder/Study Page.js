@@ -296,13 +296,13 @@ var stringBoolean = boolean.toString();// prints=> "true" to the console.
  // example of switch statement
 
  switch (timeOfDay) {
-  case 1: "afternoon"; // this case clause will not execute-- it doesn't match timeOfDay
+  case "afternoon": "Good afternoon!"; // this case clause will not execute-- it doesn't match timeOfDay
   break;
-  case 2: "evening"; // this case clause will not execute-- it doesn't match timeOfDay
+  case "evening": "Good evening!"; // this case clause will not execute-- it doesn't match timeOfDay
   break;
-  case 3: "morning"; // this case clause will execute because it matches timeOfDay === "morning"
+  case "morning": "Good morning!" // this case clause will execute because it matches timeOfDay === "morning"
   break;
-  default: "night"; // the default is never reached.
+  default: "Good night"; // the default is never reached.
  }
 
 
