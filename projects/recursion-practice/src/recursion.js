@@ -358,8 +358,8 @@ var capitalizeFirst = function(array) {
     return [];
   } else {
     //recursion: take every index and array[0][0].toUpperCase() + rest of word
-    return [array[0][0].toUpperCase().concat(array[0].slice(1, array[0].length)), 
-    ...capitalizeFirst(array.slice(1, array.length))];
+    return [array[0][0].toUpperCase().concat(array[0].slice(1)), 
+    ...capitalizeFirst(array.slice(1))];
     }
 };
 
@@ -379,13 +379,35 @@ var nestedEvenSum = function(obj) {
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function(arrays) {
+
 };
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
 var letterTally = function(str, obj) {
-
+  var arr = str.split('');
+  //base case: array length = 0
+  if (arr.length === 0) {
+    return {};
+  //starting point: create the object
+  } else if (obj === undefined){
+    obj = {};
+    //put in first letter
+    obj[arr[0]] = 1; 
+    //recurse with rest of string & obj
+    letterTally(str.slice(1, arr.length), obj);
+  }else if (obj[arr[0]]) {
+  //rest of recursion: if key exists, add one to value
+    obj[arr[0]] += 1;
+    letterTally(str.slice(1, arr.length), obj);
+  } else {
+    //create key with value 1
+    obj[arr[0]] = 1; 
+    letterTally(str.slice(1, arr.length), obj);
+  }
+  return obj;
 };
+
 
 // 31. Eliminate consecutive duplicates in a list.  If the list contains repeated
 // elements they should be replaced with a single copy of the element. The order of the
@@ -393,19 +415,48 @@ var letterTally = function(str, obj) {
 // Example: compress([1, 2, 2, 3, 4, 4, 5, 5, 5]) // [1, 2, 3, 4, 5]
 // Example: compress([1, 2, 2, 3, 4, 4, 2, 5, 5, 5, 4, 4]) // [1, 2, 3, 4, 2, 5, 4]
 var compress = function(list) {
-
+  if (list.length === 0) {
+   return [];
+  } else {
+  var [head, ...rest] = list
+  var l = compress(rest)
+  return (l[0] === head) 
+          ? l
+          : [head, ...l];
+  }
 };
 
 // 32. Augment every element in a list with a new value where each element is an array
 // itself.
 // Example: augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
 var augmentElements = function(array, aug) {
+  // base case
+   if (array.length === undefined) {
+     return null;
+   } else if (array) {
+     array[0].push(aug);
+   }
+
+
+  // recursive case
+  return augmentElements(array, array[0].push(aug))
+
 };
 
 // 33. Reduce a series of zeroes to a single 0.
 // minimizeZeroes([2,0,0,0,1,4]) // [2,0,1,4]
 // minimizeZeroes([2,0,0,0,1,0,0,4]) // [2,0,1,0,4]
-var minimizeZeroes = function(array) {
+var minimizeZeroes = function(array, newArr = []) {
+  if (array.length === 0){
+     return newArr;
+  } else if (array[0] !== 0) {
+        newArr.push(array[0]);
+        return minimizeZeroes(array.slice(1), newArr);
+    } else if (array[0] !== array[1]) {
+        newArr.push(array[0]);
+        return minimizeZeroes(array.slice(1), newArr);
+    }
+    return minimizeZeroes(array.slice(1), newArr);    
 };
 
 // 34. Alternate the numbers in an array between positive and negative regardless of
@@ -413,17 +464,52 @@ var minimizeZeroes = function(array) {
 // alternateSign([2,7,8,3,1,4]) // [2,-7,8,-3,1,-4]
 // alternateSign([-2,-7,8,3,-1,4]) // [2,-7,8,-3,1,-4]
 var alternateSign = function(array) {
-  // base case
+  var values = array.slice();
+  var element = values.shift();
 
+  if(array.length === 0){
+    return [];
+  }
+  //if array length is odd make the element positive 
+  if(array.length % 2 !== 0){
+    //is the number positive 
+    return [element > 0 ? 0-element : element].concat(alternateSign(values));
+  } else {
+    //if the array length is even make the element positive
 
-  //recursive case
-  
+    //is the element negative
+    return [element < 0 ? 0-element: element].concat(alternateSign(values));
+  }
 };
 
 // 35. Given a string, return a string with digits converted to their word equivalent.
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
-var numToText = function(str) {
+var numToText = function(str, returnStr = "") {
+  var obj = {
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "nine"
+  };
+
+// base case
+if (str.length === 0) {
+  return returnStr;
+} 
+//recursive 
+if (!Object.keys(obj).includes(str[0])) {
+  returnStr += str[0];
+} else {
+  var newString = obj[str[0]] + str.slice(1);
+  return numToText(newString, returnStr);
+}
+return numToText(str.slice(1), returnStr);
 };
 
 // *** EXTRA CREDIT ***
@@ -437,6 +523,7 @@ var tagCount = function(tag, node) {
 // console.log(binarySearch(5)) will return '5'
 
 var binarySearch = function(array, target, min, max) {
+  
 };
 
 // 38. Write a merge sort function.
