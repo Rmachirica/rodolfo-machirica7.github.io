@@ -1,16 +1,20 @@
 /*
 * Variables 
 
-* 0. variables are container-like tools in javascript used for storing data or values. 
-Variables at the time of their creation/declaratio they are given specific names that relates directly to the time of data (string, number, boolean, array, function, object, NaN, null...etc) that they will store.
+* 0. variables are container-like tools in javascript used for pointing at data or values. 
+Variables at the time of their creation/declaratio they are given specific names that 
+relates directly to the time of data (string, number, boolean, array, function, object, NaN, null...etc) 
+that they will point at.
 
-*1. Here's the structure for creating a variable: keyword (var, let, const) variableName (myName or myAge or objectListing...) followed by either semi-colon (;) or an assigment operator (=) with a value to the right of the (=).
+*1. Here's the structure for creating a variable: keyword (var, let, const) variableName (myName or myAge or objectListing...) 
+followed by either semi-colon (;) or an assigment operator (=) with a value to the right of the (=).
 
 * 2. Variable usage
-There are two phases of using variables:
-1. variable declaration: keyword variableName and semi-colon(;)
-At the first phase the value of our variable is by default undefined. However, this is only true for variables declared with the var and let keywords. const variables have to be initiated immediately.
-2. varibale assignment: varibleName = data (the data type has to relate to the variables name for clarity reasons).
+* There are two phases of using variables:
+* 1. variable declaration: keyword variableName and semi-colon(;)
+* At the first phase the value of our variable is by default undefined. However, this is only true for variables
+* declared with the var and let keywords. const variables have to be initiated immediately when they are created.
+* 2. Varibale assignment: variableName = data; (the data type has to relate to the variables name for clarity reasons).
 */ 
 
 // Example:
@@ -308,9 +312,111 @@ var stringBoolean = boolean.toString();// prints=> "true" to the console.
 
  /**
   * Loops
+  * 0. Loops are build-in constructs or features available for programers to execute a block of code
+  * as many times as necessary. Another term for looping is iteration, which means to reapeat-- in this case
+  * an action or task as many times as instructed by the code of the programmer. Loops are great tools
+  * used to manipulate collections of data like arrays and objects. 
   * 
+  * 1. There are three main types of loops:
+  * for loop;
+  * for in-loop;
+  * while loop and;
+  * do while loop.
+  * 
+  * 1.1. All those loops mentioned above are relevant. However, for loop, while loop and for in-loop 
+  * are by far the most common types of loops and also the most important ones, with these loops we
+  * can manipulate any kind or size or data collection.
+  * 
+  * 1.2. for loops
+  * Oftern used to iterated over arrays. Here's the structure of a for loop: 
+  * for (initialization; stop condition; incrementor) {
+  * // this is for loop code block
+  * }
+  * Iniialization: we declare the counter or iteration varible to represent our data or the indexes
+  * of our data; 
+  * stop condition: this expresstion tells the syntax parser when to stop the iteration;
+  * incrementor: this statement tells the javascript intepreter to increment or decrement the iteration
+  * variable by a certain given number.
+  * for loops give to the programmer access to two subparts of an array: indexes and items, which is what
+  * we manipulate.
+  * 
+  * 1.3 for in-loop 
+  * For in loop is a special type of loop designed to iterate over objects. 
+  * Here's the structure of for in-loop:
+  * for (var key in object) {
+  * // for in loop code block
+  * };
+  * for in Loops give the programmers access to two subparts of an object: keys and values, which
+  * is what in turn, we use to manipulate our data.
+  * 
+  * 1.4. While loops
+  * While loop is a type of iteration construct better suited for situation when the programmer doesn't
+  * know when to stop the loop. For this, for loop uses a boolean expression that evaluates to true or
+  * false as a stop condition. So the loop will continue as long as the stop condition evaluate to 
+  * true.
+  * Here's the structure for a while loop: while (condition) {
+  * // do something;
+  * incrementor;
+  * };
+  * 
+  * 1.5. do while loop
+  * do while loop is the least common one. However, it's still useful. Better suited for situations
+  * when before a condition is evaluated, we want perfom  some sort of task. 
+  * Here's the structure for do while loop:
+  * do {
+  * 
+  * // do something here
+  * } while (condition);
+  * As the structure above ilustrates, before we hit the condition, first we ask that the code in
+  * the code block is executed.
   */
 
 
+ // Implementing for loop in an ascending manner
 
+ var names = ["Jona", "Squish", "Gabe", "Juany", "Titi", "Mia", "Hunter"];
+
+ for (var i = 0; i < names.length; i++) {
+     console.log(names[i]);// prints => "Jona", "Squish", "Gabe", "Juany","Titi", "Mia", "Hunter" 
+ };
+
+ // Implementing for loops in a descending manner/ backwards
+
+ for (var j = names.length - 1; i >= 0 ; i--) {
+     console.log(names[i]);// prints=>"Hunter", "Mia", "Titi", "Juany", "Gabe", "Squish", "Jona"    
+ };
+
+//Implementing for in-loop
+var users = {
+   first: { name: "Tomas",
+   age: 35,
+   occupation: "teacher"
+    },
+second: { name: "Togara",
+age: 34,
+occupation: "nurse",
+    }
+};
+
+for (var key in users) {
+    console.log(key) // prints: first, second
+    console.log(users[key])// prints { name: "Tomas",
+                                     // age: 35,
+                                    // occupation: "teacher"
+                                 //  }, 
+                                //  { name: "Togara",
+                                //  age: 34,
+                                //  occupation: "nurse",
+                                //      }
+}
+
+
+// Implementing while loop
+var i = 5;
+while (i > 0) {
+    console.log("Class is about to start"); // prints => "Class is about to start" 5
+    i--;                                     // "Class is about to start"          4     
+}                                            // "Class is about to start"          3
+                                            // "Class is about to start"           2
+                                           // "Class is about to start"            1
 
