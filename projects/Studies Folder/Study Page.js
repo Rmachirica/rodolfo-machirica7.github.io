@@ -43,7 +43,8 @@ console.log( myName, myAge); // prints Elijah, 2.5 to the console.
 
 /**
  * Data types 
- * There are two major categories of data in JavaScript and they follow: primitive data type and complex data types.
+ * There are two major categories of data in JavaScript and they follow: primitive data type and 
+ * complex data types.
  * All the data that programmers handle or manipulate fall within those two categories. 
  * 
  * 0. 
@@ -59,6 +60,13 @@ console.log( myName, myAge); // prints Elijah, 2.5 to the console.
  * Arrays and objects are complex data structures-- we can see them as containers for organized
  *  or meaningfully arranged collection of other types (primitive).
  * 
+ * The difference between complex and primitve data types reside chiefly in how they are passed to
+ *a function. Primitive values are passed by copy-- meaning that at the time of passing a "physical"
+ * copy of that data is made and it that copy changes of the course of the program it won't affect 
+ * the original variable. In contrast, the complex data types (arrays and objects) their values
+ * are passed in by reference-- meaning that two variables can reference to the same values or
+ * data, and whatever mutation that happen in one is reflected at in the other variable 
+ * because they are pointing at the same array/object. 
  */
 
 // Example of simple/ primitive data types
@@ -85,17 +93,34 @@ var yourFavoriteFood; // The value of yourFavorite food is undefined because you
 //Examples of complex data types.
 //2. Arrays-- a collection of data (primitive or complex) arranged in a form of a list.
 // Arrays are 0 indexed--meaning that each entry or element has a unique indexed position starting 
-//from index 0 (the first element) stoping at the position or index array[array.length-1] (the last element in the list).
+//from index 0 (the first element) stoping at the position or index array[array.length-1] 
+//(the last element in the list).
 var namesAndInterets = [{name: "jonathan", 
 interets: ["reading", "cooking", "design"]}, ["Amelia", "games", ["business", false]], 
 {name: "Mark", 
 interets: ["poetry", "painting", "soccer"]}];
+// The above array has three elements each one with a specific index. The first element is at index 0, 
+//the second at index 1 and the third is at index 2.
 
-// The above array has three elements each one with a specific index. The first element is at index 0, the second at index 1 and the third is at index 2.
+var newNamesAndInterests = namesAndInterets;// Now newNamesAndInterests is pointing at 
+//the same array as namesAndInterets. 
+newNamesAndInterests.pop(); // removes the last item in the array
+console.log(newNamesAndInterests);// var namesAndInterets = [{name: "jonathan", 
+//interets: ["reading", "cooking", "design"]}, ["Amelia", "games", ["business", false]], 
+//];
+
+console.log(namesAndInterets);// // var namesAndInterets = [{name: "jonathan", 
+//interets: ["reading", "cooking", "design"]}, ["Amelia", "games", ["business", false]], 
+//];
+
+//when we popped the last value of newNamesAndInterests it affected namesAndInterets, meaning
+//that the last value of namesAndInterets was also popped because they are pointing at the 
+//same array.
 
 
 //2. 1 Objects-- a complex data structure arranged in key-value pairs. the keys are always
-// of type "string" and the values can be anything from primitive  to complex data types, objects included.
+// of type "string" and the values can be anything from primitive  to complex data types,
+// objects included.
 var mySelf = {// the strings on the left side of the values are the 
     //keys/properties and the data on the right side of the colons are the values.
     "name": "Rodolfo",
@@ -184,13 +209,15 @@ var strictEquality = "Anna" === "Anna"; // returns true;
 
 var equalityOperator = "12" == 12  // converts "12" into number and returns true;
 
-var strictlyNotEqual = "Anna" !== "anna";// returns false because "Anna" is not exactly the same as "anna", not in value;
+var strictlyNotEqual = "Anna" !== "anna";// returns false because "Anna" is not exactly the
+// same as "anna", not in value;
 
 // logical operators
 
 var andOperator = 9 > 6 && 6 > 5; // returns true
 
-var anotherAndOperator = "Anna" === "Anna" && "car" !== "car";// returns false because the second boolean expression resolves to false
+var anotherAndOperator = "Anna" === "Anna" && "car" !== "car";// returns false because the second boolean
+// expression resolves to false
 
 var orOperator = true || false // returns true 
 var anotherOrOperator = false || false // returns false
@@ -430,12 +457,14 @@ while (i > 0) {
  * // function body;
  * };
  * 
- * 1.1. Function expression. It has the following structure:
+ * 1.1. Function expression-- assigns an anonymous function to a variable.
+ * It has the following structure:
  * var name(functionName) = function(function key word) (parenteses for placeholders) {
  * // function Body
  * }
  * 
- * 1.2. Arrow function. It has the following struture:
+ * 1.2. Arrow function-- it doesn't use the function keyword.
+ * Here's its struture:
  * var name(functionName) = (parenteses for placeholders) => {
  * // function body
  * }
@@ -478,9 +507,34 @@ function personalInfo(object) {
 }
 console.log(personalInfo(person)); // prints=> "Francis is 45 years old."
 
-// Function expression withought parameters
-var returnObject = () => {
+// Arrow function without parameters
+var returnObjectValue = () => {
     return this.person.age;
 }
 
-console.log(returnObject()); // prints=> 45
+console.log(returnObjectValue()); // prints=> 45
+
+// Arrow functions with parameters
+var combineInfo = (object, func) => {
+    return `${func(object)}`;
+};
+console.log(combineInfo(person, personalInfo));//=> prints=> "Francis is 45 years old."
+
+// Examples of closure and scope using function expression
+
+var arr = [1, 2, 3, 4, 5];
+
+var multiplyAll = function (array) {// functions can see any variable declared in the global
+    //execution context.
+    var num = 7;// this variable is a function scoped one, it can't be seen outside this function.
+    return function (number) {// this is an example of closure
+        return num * array.reduce((total, currentVal) => {
+          return total + currentVal;
+        }, 0) * number;
+    }
+ };
+
+ var results = multiplyAll(arr);
+ console.log(results(2));// prints=> 210. results has access to multiplyAll 
+ //even after multiplyAll has finished executing-- this is closure.
+
