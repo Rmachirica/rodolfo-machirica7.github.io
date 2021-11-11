@@ -358,17 +358,6 @@ var stringBoolean = boolean.toString();// prints=> "true" to the console.
   * // do something;
   * incrementor;
   * };
-  * 
-  * 1.5. do while loop
-  * do while loop is the least common one. However, it's still useful. Better suited for situations
-  * when before a condition is evaluated, we want perfom  some sort of task. 
-  * Here's the structure for do while loop:
-  * do {
-  * 
-  * // do something here
-  * } while (condition);
-  * As the structure above ilustrates, before we hit the condition, first we ask that the code in
-  * the code block is executed.
   */
 
 
@@ -420,3 +409,78 @@ while (i > 0) {
                                             // "Class is about to start"           2
                                            // "Class is about to start"            1
 
+
+/**
+ * Functions 
+ * 0. A function is a a logic data in JavaScript that encapsulates a block of code to 
+ * be executed at any time and  as many times in the lifetime of a program. 
+ * Functions can accept parameters or inputs(placeholders variables)
+ * at the time of their creation and accept arguments(values for the placeholders) at the time of 
+ * function invocation or function call.
+ * There are two phases or stages of using functions:
+ * 0.1. Function declaration: at this phase the function is created, given a name and a set of
+ * instructions for it to execute. 
+ * 0.2. Function invocation/call: at this phase the function executes the task it was designed for.
+ *  
+ * 1. There are a few types of functions with somewhat unique or modified syntax. 
+ * Here are the types of functions common in JavaScript programming language:
+ * 
+ * 1.0.Function declaration. It has the following structure:
+ * function(key word) name(name of the function) (parenteses for placeholders) {
+ * // function body;
+ * };
+ * 
+ * 1.1. Function expression. It has the following structure:
+ * var name(functionName) = function(function key word) (parenteses for placeholders) {
+ * // function Body
+ * }
+ * 
+ * 1.2. Arrow function. It has the following struture:
+ * var name(functionName) = (parenteses for placeholders) => {
+ * // function body
+ * }
+ * 
+ * 1.3. Anonymous function. It has the following structure:
+ * function(function keyword) (parenteses for placeholders) {
+ * // function body
+ * }
+ * 
+ *2. Scope
+ * Functions have the ability to see and access variables in the global scope,
+ * manipulate and mutate them. Hower, functions local variables can not be seen 
+ * or accessed outside of the function scope.
+ * 
+ * 3. Closures
+ * Closure is a function declared inside of another function or in the global context 
+ * environment with granted access to variables in it's parent scope in the global 
+ * scope.
+ */
+
+ // Examples of function definition/declaration with no parameters
+
+ var newName = "Edson";
+ function printName () {// this function doesn't take any parameters
+     console.log(newName);
+ }
+
+// function invocation
+printName();//prints=> "Edson" to the console.
+
+// Example of function declaration with parameter(s)
+
+var person = {
+    name: "Francis",
+    age: 45
+};
+
+function personalInfo(object) {
+    return `${object.name} is ${object.age} years old.`;
+}
+console.log(personalInfo(person)); // prints=> "Francis is 45 years old."
+
+// Function expression withought parameters
+var returnObject = () => {
+    return this.person.age;
+}
+
+console.log(returnObject()); // prints=> 45
