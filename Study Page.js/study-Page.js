@@ -1,45 +1,51 @@
 /*
 * Variables 
-
 * 0. variables are container-like tools in javascript used for pointing at data or values. 
-Variables at the time of their creation/declaratio they are given specific names that 
-relates directly to the time of data (string, number, boolean, array, function, object, NaN, null...etc) 
-that they will point at.
-
+* Variables at the time of their creation/declaration they are given specific names that 
+* relate directly to the type of data (string, number, boolean, array, function, object, NaN, null...etc) 
+* that they will point at.
 *1. Here's the structure for creating a variable: keyword (var, let, const) variableName (myName or myAge or objectListing...) 
 followed by either semi-colon (;) or an assigment operator (=) with a value to the right of the (=).
-
 * 2. Variable usage
 * There are two phases of using variables:
 * 1. variable declaration: keyword variableName and semi-colon(;)
 * At the first phase the value of our variable is by default undefined. However, this is only true for variables
 * declared with the var and let keywords. const variables have to be initiated immediately when they are created.
-* 2. Varibale assignment: variableName = data; (the data type has to relate to the variables name for clarity reasons).
+
+*2.1. Hoisting
+* The lexical environment, which refers to where variables and functions and other meaningful
+* codes live or are located in the Javascript file, has very little importance when it comes to hoisting
+* and this is why: function declarations and var variable declarations during the creation phase, the javascript
+* engine reserves memory for them and they are "moved" not lexically, but by reference to the to of their scope. 
+* This means that function declaration and variable declarations can be referenced anywhere before they are 
+* initialized, no matter where they are sitting, lexically-- this concept is called hoisting.
+* The let and const variable declarations are not hoisted; so they can't be referenced before initializattion
+* 
+*
+* 2.2 Varibale assignment: variableName = data; (the data type has to relate to the variables name for clarity reasons).
 */ 
+
 
 // Example:
 //1. var variable
 var myName; // variable declaration with a default value of undefined.
 myName = "Gabriel"; // variable assignment with the string value "Gabriel"
 console.log(myName) // prints Gabriel to the console
-
 //2. let variable
 let myAge; // variable declaration with a default value of undefined.
 myAge = 5.5; // variable assignment with the number value 5.5;
 console.log(myAge) // prints 5.5 to the console;
-
 //3. const variable
-//Const variables are imutable-- meaning  that once they are declared theyr can't be changed, and they have to initiated or assigned a value at the time of their declaration.
+//Const variables are imutable-- meaning  that once they are declared they can't be changed, and they
+// have to initiated or assigned a value at the time of their declaration.
 //Example:
 const birthYear; // SyntaxError: Missing initializer in const variable
 const myBirthYear = 2016; // const variable initialized at the moment of declatation
 console.log(myBirthYear); // prints 2016 in the console.
-
 // Mutating or updating the values of var and let variables
 myName = "Elijah"; // Now myName is "Elijah" and no longer "Gabriel"
 myAge = 2.5; // Now myAge is 2.5 and no longer 5.5.
 console.log( myName, myAge); // prints Elijah, 2.5 to the console.
-
 
 /**
  * Data types 
@@ -48,9 +54,13 @@ console.log( myName, myAge); // prints Elijah, 2.5 to the console.
  * All the data that programmers handle or manipulate fall within those two categories. 
  * 
  * 0. 
- * 1. These are the primitive data types: strings, numbers, booleans, null, undefined, NaN;
- * 2. These are the complex data types: arrays and objects. 
+ * 1. These are the primitive data types: strings, numbers, booleans, null, undefined.
+ * Infinity and -Infinity-- these, like regular numbers, are numeric type but are 
+ * are very different. Infinity and -Infinity are properties of the global object
+ * therefore they can't be changed and they are numbers that can'e be represented 
+ * in digits. 
  * 
+ * 2. These are the complex data types: arrays and objects. 
  * 1.
  * 1. Primitive data type
  * The primitive data are immutable-- meaning that they can't be changed or mutated, that is, 
@@ -72,27 +82,32 @@ console.log( myName, myAge); // prints Elijah, 2.5 to the console.
 // Example of simple/ primitive data types
 //1. Strings. A sequence of alphabetical characters and digits enclosed in double quotes
 // ("Example Number 1") or single quotes ('Example number 2').
-
 var weatherToday = "Sunny"; // "Sunny" is a primitive data of string type and it's characters are immutable
 
-//1.2 Number and NaN. Single or sequence of digits, these can integers (1 or 2009 or 39...) 
-//or have a floating point (1.5 or 3.5 or 7.6 ...)
+//1.2 Number-- Single or sequence of digits, these can integers (1 or 2009 or 39...) 
+//or have a floating point (1.5 or 3.5 or 7.6 ...) or infinity or -infinity.
+// Any number added, multiplied by infinity equals infinity or -infinity.
+// Example:
+var myAge = 31;// numeric type
+var infinity = myAge * Infinity;// prints=> Infinity to the console
+
+// Infinity or POSITIVE_INFINITY, posesses a value greater that any number and -infinity or
+//NEGATIVE_INFINITY posesses a value smaller than any negative numerable negative number.
+
 
 var highTemperatureToday = 75; // 75 is a primitive data of  type number  and it's digits are immutable
-var daysOfTheWeek = 17; // in a boolean context daysOfTheWeek will resolve to NaN because a week has 7 days.
-
+var daysOfTheWeek = 17; // in a boolean context daysOfTheWeek will resolve to false because a week has 7 days.
 // 1.3 Boolean. The boolean primitive datum type represents a logical entity and can 
-//embody only eithe of these two values: true and false. 
-
-var adultsAllowedtoDrive = true; // the value of dultsAllowedtoDrive is of type boolean and is immutable. However, it can be updated. 
-
+//embody only either of these two values: true and false. 
+var adultsAllowedtoDrive = true; // the value of dultsAllowedtoDrive is of type boolean and is immutable. 
+                                 //However, it can be updated. 
 //1.4 undefined. If a var or let variable is not initiated at the time of declaration
 // then its value is automatically undefined, and immutable.
 var yourFavoriteFood; // The value of yourFavorite food is undefined because yourFavoriteFood was not initiated.
-
 //Examples of complex data types.
 //2. Arrays-- a collection of data (primitive or complex) arranged in a form of a list.
 // Arrays are 0 indexed--meaning that each entry or element has a unique indexed position starting 
+//from index 0 (the first element) stoping at the position or index array[array.length-1] (the last element in the list).
 //from index 0 (the first element) stoping at the position or index array[array.length-1] 
 //(the last element in the list).
 var namesAndInterets = [{name: "jonathan", 
@@ -102,6 +117,8 @@ interets: ["poetry", "painting", "soccer"]}];
 // The above array has three elements each one with a specific index. The first element is at index 0, 
 //the second at index 1 and the third is at index 2.
 
+// The above array has three elements each one with a specific index. The first element is at index 0, 
+//the second at index 1 and the third is at index 2.
 var newNamesAndInterests = namesAndInterets;// Now newNamesAndInterests is pointing at 
 //the same array as namesAndInterets. 
 newNamesAndInterests.pop(); // removes the last item in the array
@@ -119,6 +136,7 @@ console.log(namesAndInterets);// // var namesAndInterets = [{name: "jonathan",
 
 
 //2. 1 Objects-- a complex data structure arranged in key-value pairs. the keys are always
+// of type "string" and the values can be anything from primitive  to complex data types, objects included.
 // of type "string" and the values can be anything from primitive  to complex data types,
 // objects included.
 var mySelf = {// the strings on the left side of the values are the 
@@ -131,8 +149,6 @@ var mySelf = {// the strings on the left side of the values are the
     "currentOcupation": "student at operation Spark",
     "dayOfDeath": undefined
 };
-
-
 /**
  * operators 
  *0.  Operators are imposing behaviors-- they perfom an action our data, thus, provoking changes. 
@@ -168,7 +184,6 @@ var mySelf = {// the strings on the left side of the values are the
  *return true or false based on the values and criteria.
  *3.6 Greater than or equal (>=) and less than or equal (<=), these compare the operands 
  and resolves to true or false based to the valitidy of the expression.
-
  *4. Logical operators
  *Logical operators are used to determine the logic between variables or values and 
  *resolves the operation to true or false. Here are the common logical operators:
@@ -177,61 +192,49 @@ var mySelf = {// the strings on the left side of the values are the
  
  *4.2 The logical operator Or (||), when used in the boolean context the || operator 
  *returns true if either of the operands is true and if both are false then it return false
-
-* 4.3 Logical Not (!), returns false if it's single operand can be converted to true otherwise it returns true.
-
+* 4.3 Logical Not (!), returns false if it's single operand can be converted to true otherwise 
+* it returns true.
 *5. Unary operator-- is an operation with only one operand. Some of unary operators include: 
 *5.1 typeof, acts on a single operand or value and returns it's data type;
 *5.2 instance of, acts on a single operand and returns true or false based on the operand 
 *being or not an instance of a particular object type. 
 *5.3 in operator, returns true if a specific property is a property in the specified object. 
-
 *6. Conditional or ternary operator-- it is an operator that takes thre operands, conditon ? expr1 : exp2;
-
  */
-
 // Examples of practical use of operators
-
 //Assignment operators
 var cityName = "Tanganhica" // Here (=) assigns the string value "Tanganhica" to the variable name;
-
 cityName += " Thomas"; // here (+=) adds to cityName the string "Thomas". Now cityName = "Tanganhica Thomas";
-
 var number = 16;
 number /= 4; // here (/=) divides number by 4. Now number = 4;
-
 var remainder = number %= 3; // here (%=) assigns the remainder of number% 3 to remainder. remainder = 1;
-
 // comparison operators
 var greatThan = 9 > 4; // returns true
-
 var strictEquality = "Anna" === "Anna"; // returns true;
 
 var equalityOperator = "12" == 12  // converts "12" into number and returns true;
 
-var strictlyNotEqual = "Anna" !== "anna";// returns false because "Anna" is not exactly the
-// same as "anna", not in value;
+var strictlyNotEqual = "Anna" !== "anna";// returns false because "Anna" is not exactly
+// the same as "anna", not in value;
 
 // logical operators
 
 var andOperator = 9 > 6 && 6 > 5; // returns true
 
-var anotherAndOperator = "Anna" === "Anna" && "car" !== "car";// returns false because the second boolean
-// expression resolves to false
+var anotherAndOperator = "Anna" === "Anna" && "car" !== "car";// returns false because the second 
+//boolean expression resolves to false
+
+var anotherAndOperator = "Anna" === "Anna" && "car" === "car";// returns true because the second boolean
+// expression resolves to true
 
 var orOperator = true || false // returns true 
 var anotherOrOperator = false || false // returns false
-
 var notOperator = !true; // returns false;
 var anotherNotOperator = typeof "Anna" === "string" && "Anna" !== "number"; // returns true;
-
 // Unary operators
 var typeOf = typeof number; // returns "number";
-
 var newDate = Date();
 var instanceOf = newDate instanceof Date; // returns false
-
-
 /**
  * String Manipulation
  * 
@@ -241,42 +244,35 @@ var instanceOf = newDate instanceof Date; // returns false
  * 
  * 1.1. manipulation with operators => strings use assignment operators (+=) 
  * concatenation operator(+) and string interpolation with template literals(``)
- * to change or mutate data in a way fits the programmer's intention. 
+ * to change or mutate data in a way that fits with the programmer's intention. 
  * 
  * 1.2. manipulatation with methods => apart from operators, strings also dispose
  * of built-in functions or methods to maximize the importance of strings as data type.
- * These methods, transform orginal strings in a meaningful and productive way.
+ * These methods, transform original strings in a meaningful and productive way.
  */
-
 //0. Operator string manipulation examples:
-
 //using += assigment operator
 var timeOfDay = "Morning";
 timeOfDay += " today is going to be a good day!"// assigns a new string to timeOfDay
 console.log(timeOfDay);// prints "Morning, today is going to be a good day!";
-
 //using concatenation
 var question = "what time is it?";
-
 console.log(timeOfDay + " " + question)// prints "Morning, what time is it?" to the console
-
 //using string interpolation and template literals
 console.log(`${timeOfDay}, afernoon...${question}`)// prints "Morining, afternoon...what time is it?"
 
 //1. String manipulation by methods, examples:
-
 //using the built-in methods to upperCase() and toLowerCase() 
 var upperCaseString = question.toUpperCase();// prints => "WHAT TIME IS IT?"; to the console
-var lowerCaseString = question.toLocaleLowerCase();// prints=> "what time is it?" all characters are lowercase.
 
+var lowerCaseString = question.toLocaleLowerCase();// prints=> "what time is it?" all characters are lowercase.
 // There are many more string manipulation methods, amongst them all is:
+
 //.split() => takes a string and with a specified delimeter it splits the string and returns an array
 var splitString = question.split(" ");// prints=> ["what", "time", "is", "it?"]
-
 // other methods include: toString()-- takes a number or other primitive values and forces them to string.
 var boolean = true;
 var stringBoolean = boolean.toString();// prints=> "true" to the console.
-
 
 /**
  * Controle Flow
@@ -312,10 +308,8 @@ var stringBoolean = boolean.toString();// prints=> "true" to the console.
  * switch statements in the place of else, take a default statement, and in the place of a return statement
  * take a break statement. That's how switch statements differ from if-elseif-else statements. 
  */
-
  //Example of if/else-if/else statements implementation
  var recursionIsTricky = "It's true for most beginners in programming";
-
  if (recursionIsTricky === "It's true for most beginners in programming") {// the condition evaluates to true
     console.log("You will get better with time and practice!");// This code block executes
  } else if (recursionIsTricky === "for some people it's not") {// this code block is never reached
@@ -323,9 +317,7 @@ var stringBoolean = boolean.toString();// prints=> "true" to the console.
  } else {// this code block is never reached
      console.log("Word hard and you'll be a function master!");
  }
-
  // example of switch statement
-
  switch (timeOfDay) {
   case "afternoon": "Good afternoon!"; // this case clause will not execute-- it doesn't match timeOfDay
   break;
@@ -335,8 +327,6 @@ var stringBoolean = boolean.toString();// prints=> "true" to the console.
   break;
   default: "Good night"; // the default is never reached.
  }
-
-
  /**
   * Loops
   * 0. Loops are build-in constructs or features available for programers to execute a block of code
@@ -386,22 +376,15 @@ var stringBoolean = boolean.toString();// prints=> "true" to the console.
   * incrementor;
   * };
   */
-
-
  // Implementing for loop in an ascending manner
-
  var names = ["Jona", "Squish", "Gabe", "Juany", "Titi", "Mia", "Hunter"];
-
  for (var i = 0; i < names.length; i++) {
      console.log(names[i]);// prints => "Jona", "Squish", "Gabe", "Juany","Titi", "Mia", "Hunter" 
  };
-
  // Implementing for loops in a descending manner/ backwards
-
  for (var j = names.length - 1; i >= 0 ; i--) {
      console.log(names[i]);// prints=>"Hunter", "Mia", "Titi", "Juany", "Gabe", "Squish", "Jona"    
  };
-
 //Implementing for in-loop
 var users = {
    first: { name: "Tomas",
@@ -413,7 +396,6 @@ age: 34,
 occupation: "nurse",
     }
 };
-
 for (var key in users) {
     console.log(key) // prints: first, second
     console.log(users[key])// prints { name: "Tomas",
@@ -425,8 +407,6 @@ for (var key in users) {
                                 //  occupation: "nurse",
                                 //      }
 }
-
-
 // Implementing while loop
 var i = 5;
 while (i > 0) {
@@ -435,8 +415,6 @@ while (i > 0) {
 }                                            // "Class is about to start"          3
                                             // "Class is about to start"           2
                                            // "Class is about to start"            1
-
-
 /**
  * Functions 
  * 0. A function is a a logic data in JavaScript that encapsulates a block of code to 
@@ -457,12 +435,14 @@ while (i > 0) {
  * // function body;
  * };
  * 
+ * 1.1. Function expression. It has the following structure:
  * 1.1. Function expression-- assigns an anonymous function to a variable.
  * It has the following structure:
  * var name(functionName) = function(function key word) (parenteses for placeholders) {
  * // function Body
  * }
  * 
+ * 1.2. Arrow function. It has the following struture:
  * 1.2. Arrow function-- it doesn't use the function keyword.
  * Here's its struture:
  * var name(functionName) = (parenteses for placeholders) => {
@@ -484,34 +464,31 @@ while (i > 0) {
  * environment with granted access to variables in it's parent scope in the global 
  * scope.
  */
-
  // Examples of function definition/declaration with no parameters
-
  var newName = "Edson";
  function printName () {// this function doesn't take any parameters
      console.log(newName);
  }
-
 // function invocation
 printName();//prints=> "Edson" to the console.
-
 // Example of function declaration with parameter(s)
-
 var person = {
     name: "Francis",
     age: 45
 };
-
 function personalInfo(object) {
     return `${object.name} is ${object.age} years old.`;
 }
 console.log(personalInfo(person)); // prints=> "Francis is 45 years old."
 
+// Function expression withought parameters
+var returnObject = () => {
 // Arrow function without parameters
 var returnObjectValue = () => {
     return this.person.age;
 }
 
+console.log(returnObject()); // prints=> 45
 console.log(returnObjectValue()); // prints=> 45
 
 // Arrow functions with parameters
@@ -535,6 +512,5 @@ var multiplyAll = function (array) {// functions can see any variable declared i
  };
 
  var results = multiplyAll(arr);
- console.log(results(2));// prints=> 210. results has access to multiplyAll 
- //even after multiplyAll has finished executing-- this is closure.
-
+ console.log(results(2)); // prints=> 210. results has access to multiplyAll 
+                         //even after multiplyAll has finished executing-- this is closure
